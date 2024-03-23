@@ -22,7 +22,15 @@ export class LoginComponent {
 
   onSubmit(){
 
-    this.http.post('http://localhost:8000/api/V1/auth/login', this.loginForm.controls);
+    console.log(this.loginForm.value);
+    this.http.post('http://localhost:8000/api/v1/users/login', this.loginForm.value).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    );
 
     // this.router.navigate(['/']);
   }
