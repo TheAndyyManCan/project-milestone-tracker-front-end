@@ -1,0 +1,34 @@
+<div class="mt-8 text-center text-4xl font-semibold">
+  Register
+</div>
+<div class="p-20">
+  <div class="border border-dark-600 rounded-xl bg-dark-300 w-1/2 mx-auto">
+    <form class="p-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="mx-2 p-2">
+          <label for="name" class="text-md text-white mx-auto">Name</label><br />
+          <input type="text"
+                 name="name"
+                 class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                 formControlName="name" />
+      </div>
+      <div class="mx-2 p-2">
+          <label for="email" class="text-md text-white mx-auto">Email</label><br />
+          <input type="email"
+                 name="email"
+                 class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                 formControlName="email" />
+      </div>
+      <div class="mx-2 p-2">
+          <label for="password" class="text-md text-white mx-auto">Password</label><br />
+          <input type="password"
+                 name="password"
+                 class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                 formControlName="password" />
+      </div>
+      <button type="submit" class="bg-dark-600 text-dark-100 font-semibold p-2 rounded-lg hover:bg-dark-500 ml-4 mt-2">Register</button>
+      <div class="text-red text-sm uppercase font-semibold mx-2 p-2" *ngIf="error">
+        The form could not be processed
+      </div>
+    </form>
+  </div>
+</div>
