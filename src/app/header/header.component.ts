@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ngOnInit() {
         if(this.authenticated){
             this.nav = [
-                {link: "#", text: "Projects"},
+                {link: "projects", text: "Projects"},
             ];
         } else {
             this.nav = [
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.authSubscription = this.auth.authenticated$.subscribe(auth => {
             if(auth){
                 this.nav = [
-                    {link: "#", text: "Projects"},
+                    {link: "/projects", text: "Projects"},
                 ];
                 this.authenticated = true;
             } else {

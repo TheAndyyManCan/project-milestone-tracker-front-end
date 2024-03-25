@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios, { Axios } from 'axios';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from './user.class';
 
 @Injectable({
@@ -9,19 +9,8 @@ import { User } from './user.class';
 })
 export class AuthService implements OnInit {
 
-    authenticated$ = new Subject<Boolean>();
+    authenticated$ = new BehaviorSubject<boolean>(false);
     user = new User(-1, "", "", []);
-
-    constructor(private router: Router) { }
-
-    ngOnInit(){
-        this.getAuthUser();
-        if(this.user.id < 0){
-            this.authenticated$.next(false);
-        } else {
-            this.authenticated$.next(true);
-        }
-    }
 
     ax = axios.create({
         baseURL: 'http://localhost:8000',
@@ -34,6 +23,15 @@ export class AuthService implements OnInit {
         withXSRFToken: true
     });
 
+    constructor(private router: Router) { }
+
+    ngOnInit(){
+        this.getAuthUser().then(response => {
+            this.authenticated$.next(true);
+        }).catch(err => {
+            this.authenticated$.next(false);
+        })
+    }
 
     getCsrfToken() {
         return this.ax.get('sanctum/csrf-cookie');
@@ -77,11 +75,22 @@ export class AuthService implements OnInit {
         });
     }
 
-    getAuthUser() {
+    checkUser() {
         this.ax.get('api/user').then(response => {
-            console.log(response);
+            this.user = new User(
+                response.data.id,
+                response.data.email,
+                response.data.name,
+                response.data.projects
+            );
+            this.authenticated$.next(true);
         }).catch(err => {
-            console.log(err);
+            this.user.clearUser();
+            this.authenticated$.next(false);
         })
+    }
+
+    getAuthUser() {
+        return this.ax.get('api/user');
     }
 }

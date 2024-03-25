@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProjectsIndexComponent } from './projects/projects-index/projects-index.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { RegisterComponent } from './register/register.component';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
+    ProjectsIndexComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,
