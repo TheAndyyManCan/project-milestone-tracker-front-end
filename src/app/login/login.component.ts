@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
     email: string = "";
@@ -25,5 +26,4 @@ export class LoginComponent implements OnInit {
     onSubmit(){
         this.auth.login(this.loginForm.controls.email.value!, this.loginForm.controls.password.value!);
     }
-
 }

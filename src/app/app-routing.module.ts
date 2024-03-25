@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'register', component:RegisterComponent, canActivate:[notAuthGuard]},
   {path: 'projects', component:ProjectsIndexComponent},
   {path: 'projects/create', component:CreateProjectComponent}
+
 ]
 
 @NgModule({
