@@ -3,11 +3,17 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { authGuard, notAuthGuard } from "./auth.guard";
+import { ProjectsIndexComponent } from "./projects/projects-index/projects-index.component";
+import { CreateProjectComponent } from "./projects/create-project/create-project.component";
 
 const routes: Routes = [
   {path: '', component:HomepageComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'register', component:RegisterComponent}
+  {path: 'login', component:LoginComponent, canActivate:[notAuthGuard]},
+  {path: 'register', component:RegisterComponent, canActivate:[notAuthGuard]},
+  {path: 'projects', component:ProjectsIndexComponent},
+  {path: 'projects/create', component:CreateProjectComponent}
+
 ]
 
 @NgModule({
