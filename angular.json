@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "project-milestone-tracker-front-end:build:production"
+              "buildTarget": "project-milestone-tracker-front-end:build:production"
             },
             "development": {
-              "browserTarget": "project-milestone-tracker-front-end:build:development"
+              "buildTarget": "project-milestone-tracker-front-end:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "project-milestone-tracker-front-end:build"
+            "buildTarget": "project-milestone-tracker-front-end:build"
           }
         },
         "test": {
