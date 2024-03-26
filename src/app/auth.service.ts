@@ -78,10 +78,10 @@ export class AuthService implements OnInit {
     checkUser() {
         this.ax.get('api/user').then(response => {
             this.user = new User(
-                response.data.id,
-                response.data.email,
-                response.data.name,
-                response.data.projects
+                response.data.data.id,
+                response.data.data.email,
+                response.data.data.name,
+                response.data.data.projects
             );
             this.authenticated$.next(true);
         }).catch(err => {

@@ -10,9 +10,14 @@ import { AuthService } from '../auth.service';
 
 export class HomepageComponent implements OnInit {
 
+    authenticated = false;
+
     constructor(private auth: AuthService) {}
 
     ngOnInit() {
+        this.auth.authenticated$.subscribe(auth => {
+            this.authenticated = auth;
+        })
         this.auth.checkUser();
     }
 

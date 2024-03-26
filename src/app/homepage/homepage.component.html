@@ -4,7 +4,9 @@
         <div class="text-8xl text-white fond-bold mt-8">Share Your Progress</div>
         <div class="text-7xl text-white fond-semibold mt-10">Get It Done</div>
         <div class="mt-12 flex">
-            <a routerLink="register" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Sign Up</a>
+            <a routerLink="register" *ngIf="!authenticated" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Sign Up</a>
+            <a routerLink="login" *ngIf="!authenticated" class="ml-4 p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Login</a>
+            <a routerLink="projects" *ngIf="authenticated" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Projects</a>
         </div>
     </div>
 </div>

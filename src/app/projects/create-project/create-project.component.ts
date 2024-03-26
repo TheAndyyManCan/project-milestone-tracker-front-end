@@ -1,25 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })
-export class CreateProjectComponent {
+export class CreateProjectComponent implements OnInit {
 
-    inputs = [
-        {name: 'title', type: 'text', label: 'Title', formControl: 'title'},
-        {name: 'deadline', type: 'date', label: 'Deadline', formControl: 'date'}
-    ];
+    authenticated = false;
 
     public projectForm = new FormGroup({
         title: new FormControl("", Validators.required),
-        date: new FormControl(""),
+        deadline: new FormControl(""),
         description: new FormControl("")
     });
 
-    onSubmit() {
+    constructor(private auth: AuthService, private projectService: ProjectService) {}
 
+    ngOnInit(){
+        this.auth.authenticated$.subscribe(auth => {
+            this.authenticated = auth;
+        });
+        this.auth.checkUser();
+    }
+
+    onSubmit() {
+        this.projectService.createProject(
+            this.auth.user.id,
+            this.projectForm.controls.title.value!,
+            this.projectForm.controls.deadline.value,
+            this.projectForm.controls.description.value
+        );
     }
 }
