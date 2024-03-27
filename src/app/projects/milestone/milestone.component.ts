@@ -12,6 +12,7 @@ export class MilestoneComponent implements OnInit {
     @Input() milestone!: Milestone;
 
     date!: Date;
+    editMode = false;
     expand = false;
     statusButtons = [
         {name: 'Todo', status: 'todo'},
@@ -33,6 +34,13 @@ export class MilestoneComponent implements OnInit {
 
     toggleExpand() {
         this.expand = !this.expand;
+    }
+
+    toggleEditMode() {
+        this.editMode = !this.editMode;
+    }
+
+    editMilestone() {
     }
 
     ngOnInit() {

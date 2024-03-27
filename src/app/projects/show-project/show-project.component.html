@@ -9,7 +9,7 @@
                 [milestone]="milestone">
             </app-milestone>
             <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)" (closeMilestone)="toggleAddMilestone()"></app-add-milestone>
-            <button (click)="toggleAddMilestone()" *ngIf="!addMilestone" class="p-4 mt-4 rounded-xl bg-dark-600 text-dark-100 hover:bg-dark-500 font-semibold">Add Milestone</button>
+            <button (click)="toggleAddMilestone()" *ngIf="!addMilestone" class="p-w mt-4 ml-2 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Add Milestone</button>
         </div>
     </div>
 </div>
