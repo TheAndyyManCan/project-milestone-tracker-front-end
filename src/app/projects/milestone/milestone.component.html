@@ -6,9 +6,13 @@
         <button type="button"
             class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
             [ngClass]="{ 'bg-dark-400 !text-white font-semibold': milestone.status == button.status }"
+            (click)="changeMilestoneStatus(button.status)"
             *ngFor="let button of statusButtons">{{ button.name }}</button>
     </div>
     <div class="flex flex-grow justify-end">
+        <div class="mr-6 selection:bg-dark-600">
+            {{ milestone.timeLeft }}
+        </div>
         <button class="px-2 hover:text-dark-600">
             <i class="fa-solid fa-pen"></i>
         </button>

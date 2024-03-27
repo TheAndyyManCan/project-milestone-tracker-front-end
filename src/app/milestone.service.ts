@@ -23,6 +23,7 @@ export class MilestoneService {
     });
 
     newMilestone$ = new Subject<any>();
+    milestoneStatusChange$ = new Subject<Milestone>();
 
     constructor(private projectService: ProjectService) { }
 
@@ -37,6 +38,27 @@ export class MilestoneService {
         }).then(response => {
             this.newMilestone$.next(
                 this.projectService.getProjectById(projectId.toString())
+            );
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    updateMilestoneStatus(id: number, status: string){
+        this.ax.patch('api/v1/milestones/' + id + '/status', {
+            status: status
+        }).then(response => {
+            this.milestoneStatusChange$.next(
+                new Milestone(
+                    response.data.data.id,
+                    response.data.data.project,
+                    response.data.data.name,
+                    response.data.data.description,
+                    response.data.data.status,
+                    response.data.data.deadline,
+                    response.data.data.time_left,
+                    response.data.data.author
+                )
             );
         }).catch(err => {
             console.log(err);

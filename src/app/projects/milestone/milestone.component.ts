@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Milestone } from '../milestone.class';
+import { MilestoneService } from 'src/app/milestone.service';
 
 @Component({
   selector: 'app-milestone',
   templateUrl: './milestone.component.html',
   styleUrl: './milestone.component.css'
 })
-export class MilestoneComponent {
+export class MilestoneComponent implements OnInit {
 
     @Input() milestone!: Milestone;
 
@@ -16,4 +17,19 @@ export class MilestoneComponent {
         {name: 'Completed', status: 'complete'},
         {name: 'Abandoned', status: 'abandoned'}
     ];
+
+    constructor(private milestoneService: MilestoneService) {}
+
+    changeMilestoneStatus(status: string){
+        this.milestone.status = status;
+        this.milestoneService.updateMilestoneStatus(this.milestone.id, status);
+    }
+
+    ngOnInit() {
+        this.milestoneService.milestoneStatusChange$.subscribe(milestone => {
+            if(this.milestone.id === milestone.id){
+                this.milestone = milestone;
+            }
+        });
+    }
 }
