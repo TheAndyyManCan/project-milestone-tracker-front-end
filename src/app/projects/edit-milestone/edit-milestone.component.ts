@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Milestone } from '../projects/milestone.class';
-import { MilestoneService } from '../milestone.service';
+import { Milestone } from '../milestone.class';
+import { MilestoneService } from '../../milestone.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -27,7 +27,7 @@ export class EditMilestoneComponent implements OnInit {
 
     constructor(private milestoneService: MilestoneService) {}
 
-    changeMilestoneStatus(status: string){
+    setStatus(status: string){
         this.status = status;
     }
 
