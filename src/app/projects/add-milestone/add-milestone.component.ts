@@ -11,6 +11,7 @@ import { Milestone } from '../milestone.class';
 export class AddMilestoneComponent {
 
     @Output() newMilestone = new EventEmitter<object>();
+    @Output() closeMilestone = new EventEmitter();
 
     status = 'todo';
     statusButtons = [
@@ -28,9 +29,13 @@ export class AddMilestoneComponent {
 
     public milestoneForm = new FormGroup({
         title: new FormControl("", Validators.required),
-        deadline: new FormControl(""),
-        description: new FormControl("")
+        deadline: new FormControl("", Validators.required),
+        description: new FormControl("", Validators.required)
     });
+
+    closeForm() {
+        this.closeMilestone.emit();
+    }
 
     onSubmit() {
         this.newMilestone.emit({

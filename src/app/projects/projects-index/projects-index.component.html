@@ -3,7 +3,7 @@
     <a routerLink="/projects/create" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500 hover:cursor-pointer text-dark-100">New Project</a>
 </div>
 <div class="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-3 gap-8 px-10">
-    <a [routerLink]="['/projects', project.id]" class="bg-dark-200 rounded-xl px-6 hover:cursor-pointer" *ngFor="let project of projects">
+    <a [routerLink]="['/projects', project.id]" class="bg-dark-200 rounded-xl px-6 hover:cursor-pointer hover:bg-dark-300" *ngFor="let project of projects">
         <div class="font-semibold text-center mt-6">{{ project.title }}</div>
         <div class="text-dark-600 mt-2">{{ project.description }}</div>
         <div class="mt-4">Deadline: {{ project.time_left }}</div>

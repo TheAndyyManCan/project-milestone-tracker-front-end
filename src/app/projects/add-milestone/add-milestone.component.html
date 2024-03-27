@@ -1,4 +1,9 @@
-<div class="p-4 bg-dark-300 rounded-xl mt-2 items-center">
+<div class="p-4 bg-dark-300 rounded-xl mt-2 items-center relative">
+    <div class="absolute top-3 right-3">
+        <button class="hover:cursor-pointer hover:text-dark-600" type="button" (click)="closeForm()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
     <form [formGroup]="milestoneForm" (ngSubmit)="onSubmit()">
         <div class="mx-2 p-2">
             <label for="title" class="text-md text-white mx-auto">Title</label><br />
@@ -7,12 +12,24 @@
                    class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
                    formControlName="title" />
         </div>
-        <div class="mx-2 p-2">
-            <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
-            <input type="date"
-                   name="deadline"
-                   class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
-                   formControlName="deadline" />
+        <div class="flex items-center">
+            <div class="mx-2 p-2 w-1/2">
+                <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
+                <input type="date"
+                       name="deadline"
+                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                       formControlName="deadline" />
+            </div>
+            <div class="flex-grow mr-4">
+                <label for="status" class="text-md text-white mx-auto">Status</label><br />
+                <div>
+                    <button type="button"
+                        class="w-1/4 h-8 first:rounded-l-xl last:rounded-r-xl px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
+                        (click)="setStatus(button.status)"
+                        [ngClass]="{ 'bg-dark-400 !text-white font-semibold': status == button.status }"
+                        *ngFor="let button of statusButtons">{{ button.name }}</button>
+                </div>
+            </div>
         </div>
         <div class="mx-2 p-2">
             <label for="description" class="text-md text-white mx-auto">Description</label><br />
@@ -21,13 +38,13 @@
                     class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
                     formControlName="description"></textarea>
         </div>
-        <div class="flex mx-4 flex-grow">
-            <button type="button"
-                class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
-                (click)="setStatus(button.status)"
-                [ngClass]="{ 'bg-dark-400 !text-white font-semibold': status == button.status }"
-                *ngFor="let button of statusButtons">{{ button.name }}</button>
-        </div>
+        <!-- <div class="flex mx-4 flex-grow"> -->
+        <!--     <button type="button" -->
+        <!--         class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold" -->
+        <!--         (click)="setStatus(button.status)" -->
+        <!--         [ngClass]="{ 'bg-dark-400 !text-white font-semibold': status == button.status }" -->
+        <!--         *ngFor="let button of statusButtons">{{ button.name }}</button> -->
+        <!-- </div> -->
         <div class="flex flex-grow ml-4 mt-4">
             <button type="submit" [disabled]="milestoneForm.invalid" class="py-2 px-3 rounded-xl bg-dark-600 text-dark-100 hover:bg-dark-500 font-semibold disabled:cursor-not-allowed">
                 Submit

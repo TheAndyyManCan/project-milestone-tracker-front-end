@@ -15,7 +15,7 @@ export class ShowProjectComponent implements OnInit {
 
     project: Project = new Project(-1, '', -1, '', '', '', []);
 
-    addMilestone = false;
+    addMilestone: boolean = false;
 
     constructor(private route: ActivatedRoute, private auth: AuthService, private projectService: ProjectService, private milestoneService: MilestoneService) {}
 

@@ -11,6 +11,8 @@ export class MilestoneComponent implements OnInit {
 
     @Input() milestone!: Milestone;
 
+    date!: Date;
+    expand = false;
     statusButtons = [
         {name: 'Todo', status: 'todo'},
         {name: 'In Progress', status: 'in_progress'},
@@ -25,10 +27,20 @@ export class MilestoneComponent implements OnInit {
         this.milestoneService.updateMilestoneStatus(this.milestone.id, status);
     }
 
+    deleteMilestone(){
+        this.milestoneService.deleteMilestone(this.milestone.id, this.milestone.projectId);
+    }
+
+    toggleExpand() {
+        this.expand = !this.expand;
+    }
+
     ngOnInit() {
+        this.date = new Date(this.milestone.deadline);
         this.milestoneService.milestoneStatusChange$.subscribe(milestone => {
             if(this.milestone.id === milestone.id){
                 this.milestone = milestone;
+                this.date = new Date(milestone.deadline);
             }
         });
     }

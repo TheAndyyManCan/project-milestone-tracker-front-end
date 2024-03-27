@@ -64,4 +64,14 @@ export class MilestoneService {
             console.log(err);
         });
     }
+
+    deleteMilestone(id: number, projectId: number){
+        this.ax.delete('api/v1/milestones/' + id).then(() => {
+            this.newMilestone$.next(
+                this.projectService.getProjectById(projectId.toString())
+            );
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 }
