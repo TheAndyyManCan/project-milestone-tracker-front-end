@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { Project } from './project.class';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,25 @@ export class ProjectService {
         }).catch(err => {
             console.log(err);
         });
+    }
+
+    getProjectById(id: string){
+        return this.ax.get('api/v1/projects/' + id);
+    }
+
+    returnProjectById(id: number){
+        this.ax.get('api/v1/projects/' + id).then((response: any) => {
+            return new Project(
+                response.data.data.id,
+                response.data.data.title,
+                response.data.data.author,
+                response.data.data.deadline,
+                response.data.data.description,
+                response.data.data.time_left,
+                response.data.data.milestones
+            );
+        }).catch(() => {
+            return new Project(-1, '', -1, '', '', '', []);
+        })
     }
 }

@@ -33,4 +33,5 @@ export class ProjectsIndexComponent implements OnInit {
     createProject() {
         this.router.navigate(['/projects/create']);
     }
+
 }

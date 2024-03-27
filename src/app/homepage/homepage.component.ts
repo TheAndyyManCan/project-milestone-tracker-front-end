@@ -21,4 +21,7 @@ export class HomepageComponent implements OnInit {
         this.auth.checkUser();
     }
 
+    showProject(id: Number){
+
+    }
 }

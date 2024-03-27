@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import axios, { Axios } from 'axios';
-import { BehaviorSubject, Subject } from 'rxjs';
+import axios from 'axios';
+import { BehaviorSubject } from 'rxjs';
 import { User } from './user.class';
 
 @Injectable({
@@ -26,9 +26,9 @@ export class AuthService implements OnInit {
     constructor(private router: Router) { }
 
     ngOnInit(){
-        this.getAuthUser().then(response => {
+        this.getAuthUser().then(() => {
             this.authenticated$.next(true);
-        }).catch(err => {
+        }).catch(() => {
             this.authenticated$.next(false);
         })
     }
@@ -38,31 +38,31 @@ export class AuthService implements OnInit {
     }
 
     login(email: string, password: string) {
-        this.getCsrfToken().then(response => {
+        this.getCsrfToken().then(() => {
             this.ax.post('login', {
                 email: email,
                 password: password
             }).then(response => {
                 this.user = new User(
-                    response.data.id,
-                    response.data.email,
-                    response.data.name,
-                    response.data.projects
+                    response.data.data.id,
+                    response.data.data.email,
+                    response.data.data.name,
+                    response.data.data.projects
                 );
                 this.authenticated$.next(true);
                 this.router.navigateByUrl("/");
-            }).catch(error => {
+            }).catch(() => {
                 this.logout();
             });
         })
     }
 
     logout(){
-        this.ax.post('logout').then(response => {
+        this.ax.post('logout').then(() => {
             this.user.clearUser();
             this.authenticated$.next(false);
             this.router.navigateByUrl("/login");
-        }).catch(err => {
+        }).catch(() => {
 
         })
     }
@@ -84,7 +84,7 @@ export class AuthService implements OnInit {
                 response.data.data.projects
             );
             this.authenticated$.next(true);
-        }).catch(err => {
+        }).catch(() => {
             this.user.clearUser();
             this.authenticated$.next(false);
         })

@@ -1,0 +1,15 @@
+<div class="p-20">
+    <div class="p-10 bg-dark-200 rounded-xl">
+        <div class="text-center font-semibold text-2xl">
+            {{ project.title }}
+        </div>
+        <div class="p-6">
+            <app-milestone
+                *ngFor="let milestone of project.milestones"
+                [milestone]="milestone">
+            </app-milestone>
+            <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)"></app-add-milestone>
+            <button (click)="toggleAddMilestone()" class="p-4 mt-4 rounded-xl bg-dark-600 text-dark-100 hover:bg-dark-500 font-semibold">Add Milestone</button>
+        </div>
+    </div>
+</div>

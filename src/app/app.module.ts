@@ -11,6 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProjectsIndexComponent } from './projects/projects-index/projects-index.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { ShowProjectComponent } from './projects/show-project/show-project.component';
+import { MilestoneComponent } from './projects/milestone/milestone.component';
+import { AddMilestoneComponent } from './projects/add-milestone/add-milestone.component';
+import { FormInputComponent } from './form/form-input/form-input.component';
+import { FormTextareaComponent } from './form/form-textarea/form-textarea.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { CreateProjectComponent } from './projects/create-project/create-project
     LoginComponent,
     RegisterComponent,
     ProjectsIndexComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ShowProjectComponent,
+    MilestoneComponent,
+    AddMilestoneComponent,
+    FormInputComponent,
+    FormTextareaComponent
   ],
   imports: [
     BrowserModule,
