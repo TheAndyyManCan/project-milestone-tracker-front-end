@@ -1,6 +1,6 @@
 <div class="flex-grow text-center text-4xl font-semibold mt-10">Projects</div>
-<div class="p-10 text-center md:text-left">
-    <a routerLink="/projects/create" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500 hover:cursor-pointer text-dark-100">New Project</a>
+<div class="ml-12 mb-4 text-center md:text-left">
+    <a routerLink="/projects/create" class="font-semibold hover:text-dark-600 hover:cursor-pointer"><i class="fa-solid fa-plus"></i> New Project</a>
 </div>
 <div class="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-3 gap-8 px-10">
     <a [routerLink]="['/projects', project.id]" class="bg-dark-200 rounded-xl px-6 hover:cursor-pointer hover:bg-dark-300" *ngFor="let project of projects">

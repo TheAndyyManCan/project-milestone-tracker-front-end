@@ -11,7 +11,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class EditMilestoneComponent implements OnInit {
 
     @Input() milestone!: Milestone;
-    @Output() milestoneEdited = new EventEmitter<Milestone>();
     @Output() formClosed = new EventEmitter();
 
     statusButtons = [
@@ -32,6 +31,19 @@ export class EditMilestoneComponent implements OnInit {
     }
 
     closeForm(){
+        this.formClosed.emit();
+    }
+
+    onSubmit(){
+        this.milestoneService.updateMilestone(
+            this.milestone.id,
+            this.milestone.projectId,
+            this.editMilestoneForm.controls['name'].value,
+            this.editMilestoneForm.controls['description'].value,
+            this.status,
+            this.editMilestoneForm.controls['deadline'].value,
+            this.milestone.author
+        );
         this.formClosed.emit();
     }
 

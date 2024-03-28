@@ -1,45 +1,50 @@
-<div class="flex p-4 bg-dark-300 mt-2 items-center rounded-t-xl">
-    <div class="p-2 flex-grow">
-        <input type="text"
-               name="title"
-               class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-10 focus:ring-dark-600 focus:outline-none"
-               value="{{ this.milestone.name }}"
-               />
-    </div>
-    <div class="flex ml-4 w-1/3">
-        <button type="button"
-            class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
-            [ngClass]=
-            "{ 'bg-dark-400 !text-white font-semibold': status == button.status }"
-            (click)="setStatus(button.status)"
-            *ngFor="let button of statusButtons">{{ button.name }}</button>
-    </div>
-    <div class="flex justify-end">
-        <button class="px-2 hover:text-dark-600">
-            <i class="fa-solid fa-check"></i>
-        </button>
-        <button (click)="closeForm()" class="px-2 hover:text-dark-600">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>
-</div>
-
-<div class="bg-dark-300 p-4 rounded-b-xl mb-4">
-    <div class="flex">
-        <div class="w-1/2 px-2">
-            <label for="description" class="ml-1 text-md text-white mx-auto">Description</label><br />
-            <textarea
-                    name="description"
-                    class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
-                    >{{ milestone.description }}</textarea>
-        </div>
-        <div class="w-1/2">
-            <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
-            <input type="date"
-                   name="deadline"
-                   class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-16 focus:ring-dark-600 focus:outline-none"
-                   value="{{ milestone.deadline }}"
+<form [formGroup]="editMilestoneForm" (ngSubmit)="onSubmit()">
+    <div class="flex p-4 bg-dark-300 mt-2 items-center rounded-t-xl">
+        <div class="p-2 flex-grow">
+            <input type="text"
+                   name="title"
+                   class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-10 focus:ring-dark-600 focus:outline-none"
+                   value="{{ this.milestone.name }}"
+                   formControlName="name"
                    />
         </div>
+        <div class="flex ml-4 w-1/3">
+            <button type="button"
+                class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
+                [ngClass]=
+                "{ 'bg-dark-400 !text-white font-semibold': status == button.status }"
+                (click)="setStatus(button.status)"
+                *ngFor="let button of statusButtons">{{ button.name }}</button>
+        </div>
+        <div class="flex justify-end">
+            <button type="submit" class="px-2 hover:text-dark-600">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="button" (click)="closeForm()" class="px-2 hover:text-dark-600">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
     </div>
-</div>
+
+    <div class="bg-dark-300 p-4 rounded-b-xl mb-4">
+        <div class="flex">
+            <div class="w-1/2 px-2">
+                <label for="description" class="ml-1 text-md text-white mx-auto">Description</label><br />
+                <textarea
+                        name="description"
+                        class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
+                        formControlName="description"
+                        >{{ milestone.description }}</textarea>
+            </div>
+            <div class="w-1/2">
+                <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
+                <input type="date"
+                       name="deadline"
+                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-16 focus:ring-dark-600 focus:outline-none"
+                       value="{{ milestone.deadline }}"
+                       formControlName="deadline"
+                       />
+            </div>
+        </div>
+    </div>
+</form>

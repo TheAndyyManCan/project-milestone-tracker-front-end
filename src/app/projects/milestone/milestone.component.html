@@ -1,5 +1,5 @@
 <div *ngIf="!editMode" class="flex p-4 bg-dark-300 mt-2 items-center" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
-    <div class="font-semibold w-1/3 selection:bg-dark-600" [ngClass]="{ 'line-through': milestone.status == 'abandoned' }">
+    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through': milestone.status == 'abandoned' }">
         {{ milestone.name }}
     </div>
     <div class="flex ml-4 flex-grow">
@@ -57,4 +57,4 @@
     </div>
 </div>
 
-<app-edit-milestone *ngIf="editMode" [milestone]="milestone" (milestoneEdited)="editMilestone()" (formClosed)="toggleEditMode()"></app-edit-milestone>
+<app-edit-milestone *ngIf="editMode" [milestone]="milestone" (formClosed)="toggleEditMode()"></app-edit-milestone>

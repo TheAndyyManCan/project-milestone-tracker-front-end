@@ -45,7 +45,7 @@ export class MilestoneComponent implements OnInit {
 
     ngOnInit() {
         this.date = new Date(this.milestone.deadline);
-        this.milestoneService.milestoneStatusChange$.subscribe(milestone => {
+        this.milestoneService.milestoneChange$.subscribe(milestone => {
             if(this.milestone.id === milestone.id){
                 this.milestone = milestone;
                 this.date = new Date(milestone.deadline);
