@@ -1,0 +1,42 @@
+<form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+    <div class="mx-auto w-1/3">
+        <div class="p-2 flex-grow">
+            <input type="text"
+                   name="title"
+                   class="font-semibold bg-dark-300 rounded-lg text-white text-center w-full mx-auto p-2 h-10 focus:ring-dark-600 focus:outline-none"
+                   value="{{ project.title }}"
+                   formControlName = "title"
+                   />
+        </div>
+    </div>
+    <div class="bg-dark-300 rounded-xl p-4">
+        <div class="flex">
+            <div class="w-1/2 px-2">
+                <label for="description" class="ml-1 text-md text-white mx-auto">Description</label><br />
+                <textarea
+                        name="description"
+                        class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
+                        formControlName="description"
+                        [value]="project.description"
+                        ></textarea>
+            </div>
+            <div class="w-1/2">
+                <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
+                <input type="date"
+                       name="deadline"
+                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-16 focus:ring-dark-600 focus:outline-none"
+                       value="{{ project.deadline }}"
+                       formControlName = "deadline"
+                       />
+            </div>
+        </div>
+        <div class="flex justify-end mt-2">
+            <button type="submit" class="px-2 hover:text-dark-600">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="button" (click)="onCloseForm()" class="px-2 hover:text-dark-600">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+</form>

@@ -17,6 +17,7 @@ import { AddMilestoneComponent } from './projects/add-milestone/add-milestone.co
 import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormTextareaComponent } from './form/form-textarea/form-textarea.component';
 import { EditMilestoneComponent } from './projects/edit-milestone/edit-milestone.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EditMilestoneComponent } from './projects/edit-milestone/edit-milestone
     AddMilestoneComponent,
     FormInputComponent,
     FormTextareaComponent,
-    EditMilestoneComponent
+    EditMilestoneComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,

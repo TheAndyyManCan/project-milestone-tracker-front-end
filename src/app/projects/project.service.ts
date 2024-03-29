@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { Project } from './project.class';
+import { AuthService } from '../auth.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,9 @@ export class ProjectService {
         withXSRFToken: true
     });
 
-    constructor(private router: Router) { }
+    projectUpdated$ = new Subject<Project>();
+
+    constructor(private router: Router, private auth: AuthService) { }
 
     createProject(userid: number, title: string, deadline: string|null, description: string|null) {
         this.ax.post('api/v1/projects', {
@@ -52,6 +56,30 @@ export class ProjectService {
             );
         }).catch(() => {
             return new Project(-1, '', -1, '', '', '', []);
+        })
+    }
+
+    updateProject(project: Project){
+        this.auth.checkUser();
+        this.ax.patch('api/v1/projects/' + project.id, {
+            user_id: this.auth.user.id,
+            title: project.title,
+            deadline: project.deadline,
+            description: project.description
+        }).then(response => {
+            this.projectUpdated$.next(
+                new Project(
+                    response.data.data.project_id,
+                    response.data.data.title,
+                    response.data.data.author,
+                    response.data.data.deadline,
+                    response.data.data.description,
+                    response.data.data.time_left,
+                    response.data.data.milestones
+                )
+            );
+        }).catch(err => {
+            console.log(err);
         })
     }
 }
