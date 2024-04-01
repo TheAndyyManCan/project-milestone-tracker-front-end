@@ -50,7 +50,7 @@ export class AuthService implements OnInit {
                     response.data.data.projects
                 );
                 this.authenticated$.next(true);
-                this.router.navigateByUrl("/");
+                this.router.navigateByUrl("/projects");
             }).catch(() => {
                 this.logout();
             });

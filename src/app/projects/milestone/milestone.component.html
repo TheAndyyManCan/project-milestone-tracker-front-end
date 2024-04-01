@@ -1,5 +1,5 @@
 <div *ngIf="!editMode" class="flex p-4 bg-dark-300 mt-2 items-center" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
-    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through': milestone.status == 'abandoned' }">
+    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through hover:no-underline': milestone.status == 'abandoned' }">
         {{ milestone.name }}
     </div>
     <div class="flex ml-4 flex-grow">
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div *ngIf="expand && !editMode" class="bg-dark-300 p-4 rounded-b-xl mb-4">
+<div *ngIf="expand && !editMode" class="selection:bg-dark-600 bg-dark-300 p-4 rounded-b-xl mb-4">
     <div class="flex">
         <div class="w-1/2">
             <div class="font-semibold">Description</div>
@@ -43,7 +43,7 @@
                     AM
                 </div>
                 <div class="p-2">
-                    <div class="font-semibold text-dark-600">Andy McDonald</div>
+                    <div class="font-semibold text-dark-600 selection:bg-dark-200">Andy McDonald</div>
                     This is what a comment will look like
                 </div>
             </div>
