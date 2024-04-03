@@ -7,13 +7,20 @@
                     <i class="fa-solid fa-pen"></i>
                 </button>
             </div>
+            <div class="text-center font-semibold text-2xl mt-4">
+                Permission level: {{ permission }}
+            </div>
             <div class="p-6">
                 <app-milestone
                     *ngFor="let milestone of project.milestones"
                     [milestone]="milestone">
                 </app-milestone>
                 <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)" (closeMilestone)="toggleAddMilestone()"></app-add-milestone>
-                <button (click)="toggleAddMilestone()" *ngIf="!addMilestone" class="mt-4 ml-2 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Add Milestone</button>
+                <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project"></app-project-users>
+                <div class="flex">
+                    <button (click)="toggleAddMilestone()" *ngIf="!addMilestone && !showUsers" class="mt-4 ml-2 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Add Milestone</button>
+                    <button (click)="toggleShowUsers()" *ngIf="!addMilestone && !showUsers && permissionLevel > 1" class="mt-4 ml-4 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Users</button>
+                </div>
             </div>
         } @else {
             <app-edit-project [project]="project" (closeForm)="toggleEditMode()"></app-edit-project>

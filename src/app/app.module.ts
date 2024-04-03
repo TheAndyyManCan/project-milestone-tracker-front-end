@@ -18,6 +18,7 @@ import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormTextareaComponent } from './form/form-textarea/form-textarea.component';
 import { EditMilestoneComponent } from './projects/edit-milestone/edit-milestone.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { ProjectUsersComponent } from './projects/project-users/project-users.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditProjectComponent } from './projects/edit-project/edit-project.compo
     FormInputComponent,
     FormTextareaComponent,
     EditMilestoneComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ProjectUsersComponent
   ],
   imports: [
     BrowserModule,

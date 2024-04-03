@@ -1,0 +1,42 @@
+<div class="p-4 bg-dark-300 rounded-xl mt-4 items-center relative">
+    <div class="absolute top-3 right-3">
+        <button class="hover:cursor-pointer hover:text-dark-600" type="button" (click)="onCloseForm()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="mx-8 grid grid-cols-4 gap-4">
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center mb-4 text-2xl font-semibold">
+                Author
+            </div>
+            <div class="flex bg-dark-300 rounded-xl p-4">
+                <div class="flex-grow">
+                    Andy McDonald
+                    <div class="font-thin italic">
+                        amcdonald1307&#64;protonmail.com
+                    </div>
+                </div>
+                <div class="justify-end">
+                    <button class="px-2 hover:text-dark-600">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Admin
+            </div>
+        </div>
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Team Members
+            </div>
+        </div>
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Spectator
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,8 +15,11 @@ export class ShowProjectComponent implements OnInit {
 
     project: Project = new Project(-1, '', -1, '', '', '', []);
 
+    showUsers: boolean = true;
     addMilestone: boolean = false;
     editMode: boolean = false;
+    permissionLevel: number = 0;
+    permission: string = 'none';
 
     constructor(private route: ActivatedRoute, private auth: AuthService, private projectService: ProjectService, private milestoneService: MilestoneService) {}
 
@@ -47,6 +50,8 @@ export class ShowProjectComponent implements OnInit {
                     response.data.data.time_left,
                     milestones
                 );
+                this.permissionLevel = response.data.data.auth_permission;
+                this.setPermissionText(this.permissionLevel);
             }
         }).catch(err => {
             console.log(err);
@@ -76,6 +81,8 @@ export class ShowProjectComponent implements OnInit {
                     response.data.data.time_left,
                     milestones
                 );
+                this.permissionLevel = response.data.data.auth_permission;
+                this.setPermissionText(this.permissionLevel);
                 this.addMilestone = false;
             }).catch((err: any) => {
                 console.log(err);
@@ -94,11 +101,35 @@ export class ShowProjectComponent implements OnInit {
         );
     }
 
+    setPermissionText(level: number){
+        switch(level){
+            case 1:
+                this.permission = 'Spectator';
+                break;
+            case 2:
+                this.permission = 'Team member';
+                break;
+            case 3:
+                this.permission = 'Admin';
+                break;
+            case 4:
+                this.permission = 'Author';
+                break;
+            default:
+                this.permission = 'None';
+                break;
+        }
+    }
+
     toggleAddMilestone(){
         this.addMilestone = !this.addMilestone;
     }
 
     toggleEditMode(){
         this.editMode = !this.editMode;
+    }
+
+    toggleShowUsers(){
+        this.showUsers = !this.showUsers;
     }
 }

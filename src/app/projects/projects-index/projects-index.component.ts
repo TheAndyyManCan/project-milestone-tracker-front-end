@@ -16,18 +16,10 @@ export class ProjectsIndexComponent implements OnInit {
     projects = this.auth.user.projects;
 
     ngOnInit() {
-        this.auth.getAuthUser().then(response => {
-            this.auth.user = new User(
-                response.data.data.id,
-                response.data.data.email,
-                response.data.data.name,
-                response.data.data.projects
-            );
-            this.projects = this.auth.user.projects;
-            this.auth.authenticated$.next(true);
-        }).catch(() => {
-            this.auth.authenticated$.next(false);
+        this.auth.user$.subscribe(user => {
+            this.projects = user.projects;
         });
+        this.auth.checkUser();
     }
 
     createProject() {
