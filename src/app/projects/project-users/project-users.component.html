@@ -5,7 +5,7 @@
         </button>
     </div>
     <div class="mx-8 grid grid-cols-4 gap-4">
-        <div class="bg-dark-200 rounded-xl p-4">
+        <div class="bg-dark-200 rounded-xl p-4" *ngFor="let permission of project.user_permissions">
             <div class="text-center mb-4 text-2xl font-semibold">
                 Author
             </div>
@@ -23,20 +23,20 @@
                 </div>
             </div>
         </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold">
-                Admin
-            </div>
-        </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold">
-                Team Members
-            </div>
-        </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold">
-                Spectator
-            </div>
-        </div>
+        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
+        <!--     <div class="text-center text-2xl font-semibold"> -->
+        <!--         Admin -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
+        <!--     <div class="text-center text-2xl font-semibold"> -->
+        <!--         Team Members -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
+        <!--     <div class="text-center text-2xl font-semibold"> -->
+        <!--         Spectator -->
+        <!--     </div> -->
+        <!-- </div> -->
     </div>
 </div>
