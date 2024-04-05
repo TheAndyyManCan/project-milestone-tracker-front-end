@@ -29,7 +29,7 @@ export class CreateProjectComponent implements OnInit {
 
     onSubmit() {
         this.projectService.createProject(
-            this.auth.user.id,
+            this.auth.user.getId,
             this.projectForm.controls.title.value!,
             this.projectForm.controls.deadline.value,
             this.projectForm.controls.description.value

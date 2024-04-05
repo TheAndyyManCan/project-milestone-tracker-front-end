@@ -44,40 +44,28 @@ export class ProjectService {
     }
 
     returnProjectById(id: number){
-        this.ax.get('api/v1/projects/' + id).then((response: any) => {
-            return new Project(
-                response.data.data.id,
-                response.data.data.title,
-                response.data.data.author,
-                response.data.data.deadline,
-                response.data.data.description,
-                response.data.data.time_left,
-                response.data.data.milestones
-            );
-        }).catch(() => {
-            return new Project(-1, '', -1, '', '', '', []);
-        })
+        let project = new Project();
+
+        this.ax.get('api/v1/projects/' + id).then((response) => {
+            project.setProjectFromApi(response.data.data);
+        }).catch(err => {
+            console.log(err);
+        });
+
+        return project;
     }
 
     updateProject(project: Project){
         this.auth.checkUser();
-        this.ax.patch('api/v1/projects/' + project.id, {
-            user_id: this.auth.user.id,
-            title: project.title,
-            deadline: project.deadline,
-            description: project.description
+        this.ax.patch('api/v1/projects/' + project.getId, {
+            user_id: this.auth.user.getId,
+            title: project.getTitle,
+            deadline: project.getDeadline,
+            description: project.getDescription
         }).then(response => {
-            this.projectUpdated$.next(
-                new Project(
-                    response.data.data.project_id,
-                    response.data.data.title,
-                    response.data.data.author,
-                    response.data.data.deadline,
-                    response.data.data.description,
-                    response.data.data.time_left,
-                    response.data.data.milestones
-                )
-            );
+            let newProject = new Project();
+            newProject.setProjectFromApi(response.data.data);
+            this.projectUpdated$.next(newProject);
         }).catch(err => {
             console.log(err);
         })

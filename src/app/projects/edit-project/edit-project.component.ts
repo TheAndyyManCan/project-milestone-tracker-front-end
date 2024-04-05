@@ -23,16 +23,18 @@ export class EditProjectComponent implements OnInit {
 
     ngOnInit() {
         this.editProjectForm = new FormGroup({
-            title: new FormControl(this.project.title, Validators.required),
-            description: new FormControl(this.project.description, Validators.required),
-            deadline: new FormControl(this.project.deadline, Validators.required)
+            title: new FormControl(this.project.getTitle, Validators.required),
+            description: new FormControl(this.project.getDescription, Validators.required),
+            deadline: new FormControl(this.project.getDeadline, Validators.required)
         });
     }
 
     onSubmit(){
-        this.project.title = this.editProjectForm.controls['title'].value;
-        this.project.description = this.editProjectForm.controls['description'].value;
-        this.project.deadline = this.editProjectForm.controls['deadline'].value;
+        this.project.updateProjectFromForm(
+            this.editProjectForm.controls['title'].value,
+            this.editProjectForm.controls['description'].value,
+            this.editProjectForm.controls['deadline'].value
+        );
         this.projectService.updateProject(this.project);
         this.closeForm.emit();
     }

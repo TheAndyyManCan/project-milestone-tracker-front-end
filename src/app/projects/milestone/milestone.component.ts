@@ -24,12 +24,11 @@ export class MilestoneComponent implements OnInit {
     constructor(private milestoneService: MilestoneService) {}
 
     changeMilestoneStatus(status: string){
-        this.milestone.status = status;
-        this.milestoneService.updateMilestoneStatus(this.milestone.id, status);
+        this.milestoneService.updateMilestoneStatus(this.milestone.getId, status);
     }
 
     deleteMilestone(){
-        this.milestoneService.deleteMilestone(this.milestone.id, this.milestone.projectId);
+        this.milestoneService.deleteMilestone(this.milestone.getId, this.milestone.getProjectId);
     }
 
     toggleExpand() {
@@ -44,11 +43,11 @@ export class MilestoneComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.date = new Date(this.milestone.deadline);
+        this.date = new Date(this.milestone.getDeadline);
         this.milestoneService.milestoneChange$.subscribe(milestone => {
-            if(this.milestone.id === milestone.id){
+            if(this.milestone.getId === milestone.getId){
                 this.milestone = milestone;
-                this.date = new Date(milestone.deadline);
+                this.date = new Date(milestone.getDeadline);
             }
         });
     }

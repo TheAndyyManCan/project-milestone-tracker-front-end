@@ -5,7 +5,6 @@ import { map, take } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
     return inject(AuthService).authenticated$.pipe(take(1), map(authenticated => {
-        console.log(authenticated);
         if(authenticated){
             return authenticated;
         } else {
@@ -16,7 +15,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 export const notAuthGuard: CanActivateFn = (route, state) => {
     return inject(AuthService).authenticated$.pipe(take(1), map(authenticated => {
-        console.log(authenticated);
         if(authenticated){
             return inject(Router).createUrlTree(["/"]);
         } else {

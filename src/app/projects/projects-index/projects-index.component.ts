@@ -13,11 +13,11 @@ export class ProjectsIndexComponent implements OnInit {
 
     constructor(private auth: AuthService, private router: Router) {}
 
-    projects = this.auth.user.projects;
+    projects = this.auth.user.getProjects;
 
     ngOnInit() {
         this.auth.user$.subscribe(user => {
-            this.projects = user.projects;
+            this.projects = user.getProjects;
         });
         this.auth.checkUser();
     }

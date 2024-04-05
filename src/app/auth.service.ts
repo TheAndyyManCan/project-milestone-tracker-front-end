@@ -11,7 +11,7 @@ import { Project } from './projects/project.class';
 export class AuthService implements OnInit {
 
     authenticated$ = new BehaviorSubject<boolean>(false);
-    user = new User(-1, "", "", []);
+    user = new User();
     user$ = new BehaviorSubject<User>(this.user);
 
     ax = axios.create({
@@ -47,27 +47,17 @@ export class AuthService implements OnInit {
             }).then(response => {
                 let projects = [];
                 for(let permission of response.data.data.permissions){
-                    let newProject = new Project(
-                        permission.project.id,
-                        permission.project.title,
-                        permission.project.author,
-                        permission.project.deadline,
-                        permission.project.description,
-                        permission.project.time_left,
-                        permission.project.milestones
-                    );
+                    let newProject = new Project();
+                    newProject.setProjectFromApi(permission.project);
                     projects.push(newProject);
                 }
-                this.user = new User(
-                    response.data.data.id,
-                    response.data.data.email,
-                    response.data.data.name,
-                    projects
-                );
+                this.user = new User();
+                this.user.setUserFromApi(response.data.data, projects);
+                console.log(this.user.getProjects);
                 this.authenticated$.next(true);
                 this.router.navigateByUrl("/projects");
             }).catch(err => {
-                console.log(err.response.data.message);
+                console.log(err);
                 this.logout();
             });
         }).catch(err => {
@@ -97,23 +87,12 @@ export class AuthService implements OnInit {
         this.ax.get('api/user').then(response => {
             let projects = [];
             for(let permission of response.data.data.permissions){
-                let newProject = new Project(
-                    permission.project.id,
-                    permission.project.title,
-                    permission.project.author,
-                    permission.project.deadline,
-                    permission.project.description,
-                    permission.project.time_left,
-                    permission.project.milestones
-                );
+                let newProject = new Project();
+                newProject.setProjectFromApi(permission.project);
                 projects.push(newProject);
             }
-            this.user = new User(
-                response.data.data.id,
-                response.data.data.email,
-                response.data.data.name,
-                projects
-            );
+            this.user = new User();
+            this.user.setUserFromApi(response.data.data, projects);
             this.user$.next(this.user);
             this.authenticated$.next(true);
         }).catch(() => {

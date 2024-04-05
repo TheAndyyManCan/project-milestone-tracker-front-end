@@ -5,6 +5,7 @@ import { ProjectService } from '../project.service';
 import { Project } from '../project.class';
 import { Milestone } from '../milestone.class';
 import { MilestoneService } from 'src/app/milestone.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-show-project',
@@ -13,7 +14,8 @@ import { MilestoneService } from 'src/app/milestone.service';
 })
 export class ShowProjectComponent implements OnInit {
 
-    project: Project = new Project(-1, '', -1, '', '', '', []);
+    project: Project = new Project();
+    project$ = new Subject<Project>();
 
     showUsers: boolean = true;
     addMilestone: boolean = false;
@@ -27,31 +29,11 @@ export class ShowProjectComponent implements OnInit {
         this.auth.checkUser();
 
         this.projectService.getProjectById(this.route.snapshot.paramMap.get('id')!).then(response => {
-            if(this.auth.user.id === response.data.data.author){
-                let milestones = [];
-                for(let milestone of response.data.data.milestones){
-                    milestones.push(new Milestone(
-                        milestone.id,
-                        milestone.project,
-                        milestone.name,
-                        milestone.description,
-                        milestone.status,
-                        milestone.deadline,
-                        milestone.time_left,
-                        milestone.author
-                    ));
-                }
-                this.project = new Project(
-                    response.data.data.id,
-                    response.data.data.title,
-                    response.data.data.author,
-                    response.data.data.deadline,
-                    response.data.data.description,
-                    response.data.data.time_left,
-                    milestones
-                );
+            if(this.auth.user.getId === response.data.data.author){
+                this.project.setProjectFromApi(response.data.data);
                 this.permissionLevel = response.data.data.auth_permission;
                 this.setPermissionText(this.permissionLevel);
+                this.project$.next(this.project);
             }
         }).catch(err => {
             console.log(err);
@@ -59,28 +41,7 @@ export class ShowProjectComponent implements OnInit {
 
         this.milestoneService.newMilestone$.subscribe(project => {
             project.then((response: any) => {
-                let milestones = [];
-                for(let milestone of response.data.data.milestones){
-                    milestones.push(new Milestone(
-                        milestone.id,
-                        milestone.project,
-                        milestone.name,
-                        milestone.description,
-                        milestone.status,
-                        milestone.deadline,
-                        milestone.time_left,
-                        milestone.author
-                    ));
-                }
-                this.project = new Project(
-                    response.data.data.id,
-                    response.data.data.title,
-                    response.data.data.author,
-                    response.data.data.deadline,
-                    response.data.data.description,
-                    response.data.data.time_left,
-                    milestones
-                );
+                this.project.setProjectFromApi(response.data.data);
                 this.permissionLevel = response.data.data.auth_permission;
                 this.setPermissionText(this.permissionLevel);
                 this.addMilestone = false;
@@ -92,8 +53,8 @@ export class ShowProjectComponent implements OnInit {
 
     onNewMilestone(milestoneDetails: any){
         this.milestoneService.createMilestone(
-            this.auth.user.id,
-            this.project.id,
+            this.auth.user.getId,
+            this.project.getId,
             milestoneDetails.title,
             milestoneDetails.description,
             milestoneDetails.status,

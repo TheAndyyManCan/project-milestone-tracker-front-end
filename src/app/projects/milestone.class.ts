@@ -9,7 +9,7 @@ export class Milestone {
     private status!: string;
     private deadline!: string;
     private timeLeft!: string;
-    private author!: User;
+    private author!: number;
 
     constructor() {
         this.setId = -1;
@@ -19,7 +19,7 @@ export class Milestone {
         this.setStatus = 'todo';
         this.setDeadline = '';
         this.setTimeLeft = '';
-        this.setAuthor = new User();
+        this.setAuthor = -1;
     }
 
     // Getters and setters
@@ -30,7 +30,7 @@ export class Milestone {
     public get getStatus():string {return this.status;}
     public get getDeadline():string {return this.deadline;}
     public get getTimeLeft():string {return this.timeLeft;}
-    public get getAuthor():User {return this.author;}
+    public get getAuthor():number {return this.author;}
 
     private set setId(id: number) {this.id = id;}
     private set setProjectId(projectId: number) {this.projectId = projectId;}
@@ -39,5 +39,16 @@ export class Milestone {
     private set setStatus(status: string) {this.status = status;}
     private set setDeadline(deadline: string) {this.deadline = deadline;}
     private set setTimeLeft(timeLeft: string) {this.timeLeft = timeLeft;}
-    private set setAuthor(author: User) {this.author = author;}
+    private set setAuthor(author: number) {this.author = author;}
+
+    public setMilestoneFromApi(apiResource: any): void {
+        this.setId = apiResource.id;
+        this.setProjectId = apiResource.project;
+        this.setName = apiResource.name;
+        this.setDescription = apiResource.description;
+        this.setStatus = apiResource.status;
+        this.setDeadline = apiResource.deadline;
+        this.setTimeLeft = apiResource.time_left;
+        this.setAuthor = apiResource.author;
+    }
 }

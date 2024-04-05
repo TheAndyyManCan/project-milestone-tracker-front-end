@@ -20,4 +20,10 @@ export class Permission {
     private set setId(id: number){this.id = id;}
     private set setUser(user: User){this.user = user;}
     private set setPermissionLevel(permissionLevel: number){this.permissionLevel = permissionLevel;}
+
+    public setPermissionFromApi(apiResponse: any, user: User){
+        this.setId = apiResponse.id;
+        this.setPermissionLevel = apiResponse.permissionLevel;
+        this.setUser = user;
+    }
 }

@@ -35,10 +35,8 @@ export class MilestoneService {
             description: description,
             status: status,
             deadline: deadline
-        }).then(response => {
-            this.newMilestone$.next(
-                this.projectService.getProjectById(projectId.toString())
-            );
+        }).then(() => {
+            this.newMilestone$.next(this.projectService.getProjectById(projectId.toString()));
         }).catch(err => {
             console.log(err);
         });
@@ -48,24 +46,15 @@ export class MilestoneService {
         this.ax.patch('api/v1/milestones/' + id + '/status', {
             status: status
         }).then(response => {
-            this.milestoneChange$.next(
-                new Milestone(
-                    response.data.data.id,
-                    response.data.data.project,
-                    response.data.data.name,
-                    response.data.data.description,
-                    response.data.data.status,
-                    response.data.data.deadline,
-                    response.data.data.time_left,
-                    response.data.data.author
-                )
-            );
+            let newMilestone = new Milestone();
+            newMilestone.setMilestoneFromApi(response.data.data);
+            this.milestoneChange$.next(newMilestone);
         }).catch(err => {
             console.log(err);
         });
     }
 
-    updateMilestone(id: number, projectId: number, name: string, description: string, status: string, deadline: string, author: string){
+    updateMilestone(id: number, projectId: number, name: string, description: string, status: string, deadline: string, author: number){
         this.ax.patch('api/v1/milestones/' + id, {
             user_id: author,
             project_id: projectId,
@@ -74,18 +63,9 @@ export class MilestoneService {
             status: status,
             deadline: deadline
         }).then(response => {
-            this.milestoneChange$.next(
-                new Milestone(
-                    response.data.data.id,
-                    response.data.data.project,
-                    response.data.data.name,
-                    response.data.data.description,
-                    response.data.data.status,
-                    response.data.data.deadline,
-                    response.data.data.time_left,
-                    response.data.data.author
-                )
-            );
+            let newMilestone = new Milestone();
+            newMilestone.setMilestoneFromApi(response.data.data);
+            this.milestoneChange$.next(newMilestone);
         }).catch(err => {
             console.log(err);
         });
@@ -93,9 +73,7 @@ export class MilestoneService {
 
     deleteMilestone(id: number, projectId: number){
         this.ax.delete('api/v1/milestones/' + id).then(() => {
-            this.newMilestone$.next(
-                this.projectService.getProjectById(projectId.toString())
-            );
+            this.newMilestone$.next(this.projectService.getProjectById(projectId.toString()));
         }).catch(err => {
             console.log(err);
         });

@@ -36,23 +36,23 @@ export class EditMilestoneComponent implements OnInit {
 
     onSubmit(){
         this.milestoneService.updateMilestone(
-            this.milestone.id,
-            this.milestone.projectId,
+            this.milestone.getId,
+            this.milestone.getProjectId,
             this.editMilestoneForm.controls['name'].value,
             this.editMilestoneForm.controls['description'].value,
             this.status,
             this.editMilestoneForm.controls['deadline'].value,
-            this.milestone.author
+            this.milestone.getAuthor
         );
         this.formClosed.emit();
     }
 
     ngOnInit() {
-        this.status = this.milestone.status;
+        this.status = this.milestone.getStatus;
         this.editMilestoneForm = new FormGroup({
-            name: new FormControl(this.milestone.name, Validators.required),
-            description: new FormControl(this.milestone.description, Validators.required),
-            deadline: new FormControl(this.milestone.deadline, Validators.required)
+            name: new FormControl(this.milestone.getName, Validators.required),
+            description: new FormControl(this.milestone.getDescription, Validators.required),
+            deadline: new FormControl(this.milestone.getDeadline, Validators.required)
         });
     }
 }

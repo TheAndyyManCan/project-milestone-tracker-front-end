@@ -2,7 +2,7 @@
     <div class="p-10 bg-dark-200 rounded-xl">
         @if(!editMode){
             <div class="text-center font-semibold text-2xl">
-                {{ project.title }}
+                {{ project.getTitle }}
                 <button (click)="toggleEditMode()" class="px-2 text-lg hover:text-dark-600">
                     <i class="fa-solid fa-pen"></i>
                 </button>
@@ -12,11 +12,11 @@
             </div>
             <div class="p-6">
                 <app-milestone
-                    *ngFor="let milestone of project.milestones"
+                    *ngFor="let milestone of project.getMilestones"
                     [milestone]="milestone">
                 </app-milestone>
                 <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)" (closeMilestone)="toggleAddMilestone()"></app-add-milestone>
-                <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project"></app-project-users>
+                <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project" [project$]="project$.asObservable()"></app-project-users>
                 <div class="flex">
                     <button (click)="toggleAddMilestone()" *ngIf="!addMilestone && !showUsers" class="mt-4 ml-2 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Add Milestone</button>
                     <button (click)="toggleShowUsers()" *ngIf="!addMilestone && !showUsers && permissionLevel > 1" class="mt-4 ml-4 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Users</button>

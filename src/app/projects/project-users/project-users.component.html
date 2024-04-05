@@ -5,15 +5,28 @@
         </button>
     </div>
     <div class="mx-8 grid grid-cols-4 gap-4">
-        <div class="bg-dark-200 rounded-xl p-4" *ngFor="let permission of project.user_permissions">
+        <div class="bg-dark-200 rounded-xl p-4">
             <div class="text-center mb-4 text-2xl font-semibold">
                 Author
             </div>
-            <div class="flex bg-dark-300 rounded-xl p-4">
+            <div class="flex bg-dark-300 rounded-xl p-4" *ngFor="let author of project.getAuthors">
                 <div class="flex-grow">
-                    Andy McDonald
+                    {{ author.getUser.getName }}
                     <div class="font-thin italic">
-                        amcdonald1307&#64;protonmail.com
+                        {{ author.getUser.getEmail }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Admin
+            </div>
+            <div class="flex bg-dark-300 rounded-xl p-4" *ngFor="let admin of project.getAdmins">
+                <div class="flex-grow">
+                    {{ admin.getUser.getName }}
+                    <div class="font-thin italic">
+                        {{ admin.getUser.getEmail }}
                     </div>
                 </div>
                 <div class="justify-end">
@@ -23,20 +36,41 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
-        <!--     <div class="text-center text-2xl font-semibold"> -->
-        <!--         Admin -->
-        <!--     </div> -->
-        <!-- </div> -->
-        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
-        <!--     <div class="text-center text-2xl font-semibold"> -->
-        <!--         Team Members -->
-        <!--     </div> -->
-        <!-- </div> -->
-        <!-- <div class="bg-dark-200 rounded-xl p-4"> -->
-        <!--     <div class="text-center text-2xl font-semibold"> -->
-        <!--         Spectator -->
-        <!--     </div> -->
-        <!-- </div> -->
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Team Members
+            </div>
+            <div class="flex bg-dark-300 rounded-xl p-4" *ngFor="let teamMember of project.getTeamMembers">
+                <div class="flex-grow">
+                    {{ teamMember.getUser.getName }}
+                    <div class="font-thin italic">
+                        {{ teamMember.getUser.getEmail }}
+                    </div>
+                </div>
+                <div class="justify-end">
+                    <button class="px-2 hover:text-dark-600">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark-200 rounded-xl p-4">
+            <div class="text-center text-2xl font-semibold">
+                Spectator
+            </div>
+            <div class="flex bg-dark-300 rounded-xl p-4" *ngFor="let spectator of project.getSpectators">
+                <div class="flex-grow">
+                    {{ spectator.getUser.getName }}
+                    <div class="font-thin italic">
+                        {{ spectator.getUser.getEmail }}
+                    </div>
+                </div>
+                <div class="justify-end">
+                    <button class="px-2 hover:text-dark-600">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

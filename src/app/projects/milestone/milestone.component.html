@@ -1,20 +1,20 @@
 <div *ngIf="!editMode" class="flex p-4 bg-dark-300 mt-2 items-center" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
-    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through hover:no-underline': milestone.status == 'abandoned' }">
-        {{ milestone.name }}
+    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through hover:no-underline': milestone.getStatus == 'abandoned' }">
+        {{ milestone.getName }}
     </div>
     <div class="flex ml-4 flex-grow">
         <button type="button"
             class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
             [ngClass]=
-            "{ 'bg-dark-400 !text-white font-semibold': milestone.status == button.status,
-            'bg-green-700 hover:bg-green-600': milestone.status == button.status && milestone.status == 'complete',
-            'bg-red-700 hover:bg-red-600': milestone.status == button.status && milestone.status == 'abandoned' }"
+            "{ 'bg-dark-400 !text-white font-semibold': milestone.getStatus == button.status,
+            'bg-green-700 hover:bg-green-600': milestone.getStatus == button.status && milestone.getStatus == 'complete',
+            'bg-red-700 hover:bg-red-600': milestone.getStatus == button.status && milestone.getStatus == 'abandoned' }"
             (click)="changeMilestoneStatus(button.status)"
             *ngFor="let button of statusButtons">{{ button.name }}</button>
     </div>
     <div class="flex w-1/4 justify-end">
         <div class="mr-6 selection:bg-dark-600">
-            {{ milestone.timeLeft }}
+            {{ milestone.getTimeLeft }}
         </div>
         <button (click)="toggleExpand()" class="px-2 hover:text-dark-600">
             <i class="fa-solid fa-caret-down"></i>
@@ -32,7 +32,7 @@
     <div class="flex">
         <div class="w-1/2">
             <div class="font-semibold">Description</div>
-            <div>{{ milestone.description }}</div>
+            <div>{{ milestone.getDescription }}</div>
             <div class="font-semibold mt-2">Deadline</div>
             <div>{{ date | date:'fullDate' }}</div>
         </div>
