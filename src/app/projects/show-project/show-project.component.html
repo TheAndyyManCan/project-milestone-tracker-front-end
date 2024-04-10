@@ -16,7 +16,7 @@
                     [milestone]="milestone">
                 </app-milestone>
                 <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)" (closeMilestone)="toggleAddMilestone()"></app-add-milestone>
-                <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project" [project$]="project$.asObservable()"></app-project-users>
+                <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project" [project$]="project$.asObservable()" [authPermissionLevel]="permissionLevel"></app-project-users>
                 <div class="flex">
                     <button (click)="toggleAddMilestone()" *ngIf="!addMilestone && !showUsers" class="mt-4 ml-2 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Add Milestone</button>
                     <button (click)="toggleShowUsers()" *ngIf="!addMilestone && !showUsers && permissionLevel > 1" class="mt-4 ml-4 hover:text-dark-600 font-semibold"><i class="fa-solid fa-plus"></i> Users</button>

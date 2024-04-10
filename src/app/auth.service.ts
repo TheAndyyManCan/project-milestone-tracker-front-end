@@ -75,11 +75,12 @@ export class AuthService implements OnInit {
         })
     }
 
-    register(name: string, email: string, password: string) {
+    register(name: string, email: string, password: string, confirmPassword: string) {
         return this.ax.post('register', {
             name: name,
             email: email,
-            password: password
+            password: password,
+            password_confirmation: confirmPassword
         });
     }
 

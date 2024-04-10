@@ -1,0 +1,17 @@
+<div class="mt-4">
+    <input type="text"
+           placeholder="Search user email..."
+           [(ngModel)]="searchTerm"
+           (keyup)="onChange($event)"
+            class="bg-dark-200 text-dark-600 rounded-xl w-full p-2 font-semibold border border-dark-600 focus:outline-none placeholder:font-thin placeholder:italic" />
+    <ul class="mt-2">
+        <li *ngIf="searchResult == []" class="p-4 bg-dark-300 selection:bg-dark-400 w-full text-center rounded-xl">
+            No results to show
+        </li>
+        <li *ngFor="let user of searchResult"
+            class="p-4 bg-dark-300 hover:bg-dark-400 w-full text-center first:rounded-t-xl last:rounded-b-xl hover:cursor-pointer"
+            (click)="onAddUser(user)">
+            {{ user.getName }}, {{ user.getEmail }}
+        </li>
+    </ul>
+</div>

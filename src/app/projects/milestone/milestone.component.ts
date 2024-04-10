@@ -39,9 +39,6 @@ export class MilestoneComponent implements OnInit {
         this.editMode = !this.editMode;
     }
 
-    editMilestone() {
-    }
-
     ngOnInit() {
         this.date = new Date(this.milestone.getDeadline);
         this.milestoneService.milestoneChange$.subscribe(milestone => {

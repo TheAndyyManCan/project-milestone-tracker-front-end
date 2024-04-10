@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
     public registerForm = new FormGroup({
         name: new FormControl("", Validators.required),
         email: new FormControl("", Validators.required),
-        password: new FormControl("", Validators.required)
+        password: new FormControl("", Validators.required),
+        confirmPassword: new FormControl("", Validators.required)
     });
 
     constructor(private auth: AuthService, private router: Router){}
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit(){
-        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!).then(response => {
+        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!, this.registerForm.controls.confirmPassword.value!).then(response => {
             this.error = false;
             this.router.navigateByUrl("/login");
         }).catch(err => {

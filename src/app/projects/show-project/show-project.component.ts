@@ -29,12 +29,10 @@ export class ShowProjectComponent implements OnInit {
         this.auth.checkUser();
 
         this.projectService.getProjectById(this.route.snapshot.paramMap.get('id')!).then(response => {
-            if(this.auth.user.getId === response.data.data.author){
-                this.project.setProjectFromApi(response.data.data);
-                this.permissionLevel = response.data.data.auth_permission;
-                this.setPermissionText(this.permissionLevel);
-                this.project$.next(this.project);
-            }
+            this.project.setProjectFromApi(response.data.data);
+            this.permissionLevel = response.data.data.auth_permission;
+            this.setPermissionText(this.permissionLevel);
+            this.project$.next(this.project);
         }).catch(err => {
             console.log(err);
         });
