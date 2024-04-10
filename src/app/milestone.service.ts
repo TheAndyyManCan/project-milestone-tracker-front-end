@@ -36,7 +36,7 @@ export class MilestoneService {
             status: status,
             deadline: deadline
         }).then(() => {
-            this.newMilestone$.next(this.projectService.getProjectById(projectId.toString()));
+            this.newMilestone$.next(this.projectService.returnProjectById(projectId));
         }).catch(err => {
             console.log(err);
         });
@@ -73,7 +73,7 @@ export class MilestoneService {
 
     deleteMilestone(id: number, projectId: number){
         this.ax.delete('api/v1/milestones/' + id).then(() => {
-            this.newMilestone$.next(this.projectService.getProjectById(projectId.toString()));
+            this.newMilestone$.next(this.projectService.returnProjectById(projectId));
         }).catch(err => {
             console.log(err);
         });

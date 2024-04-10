@@ -44,5 +44,6 @@ export class AddMilestoneComponent {
             deadline: this.milestoneForm.controls.deadline.value!,
             status: this.status
         });
+        this.milestoneForm.reset();
     }
 }

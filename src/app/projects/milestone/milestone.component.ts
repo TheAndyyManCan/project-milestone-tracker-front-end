@@ -50,7 +50,5 @@ export class MilestoneComponent implements OnInit {
                 this.date = new Date(milestone.getDeadline);
             }
         });
-
-        console.log(this.authPermissionLevel);
     }
 }

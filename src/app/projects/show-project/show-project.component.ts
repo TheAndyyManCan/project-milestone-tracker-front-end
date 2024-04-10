@@ -38,14 +38,8 @@ export class ShowProjectComponent implements OnInit {
         });
 
         this.milestoneService.newMilestone$.subscribe(project => {
-            project.then((response: any) => {
-                this.project.setProjectFromApi(response.data.data);
-                this.permissionLevel = response.data.data.auth_permission;
-                this.setPermissionText(this.permissionLevel);
-                this.addMilestone = false;
-            }).catch((err: any) => {
-                console.log(err);
-            })
+            this.project = project;
+            this.addMilestone = false;
         });
     }
 
