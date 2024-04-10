@@ -45,15 +45,36 @@ export class AuthService implements OnInit {
                 email: email,
                 password: password
             }).then(response => {
-                let projects = [];
-                for(let permission of response.data.data.permissions){
+                let authorProjects = [];
+                for(let project of response.data.data.projects.author){
                     let newProject = new Project();
-                    newProject.setProjectFromApi(permission.project);
-                    projects.push(newProject);
+                    newProject.setProjectFromApi(project);
+                    authorProjects.push(newProject);
                 }
+
+                let adminProjects = [];
+                for(let project of response.data.data.projects.admin){
+                    let newProject = new Project();
+                    newProject.setProjectFromApi(project);
+                    adminProjects.push(newProject);
+                }
+
+                let teamMemberProjects = [];
+                for(let project of response.data.data.projects.team_member){
+                    let newProject = new Project();
+                    newProject.setProjectFromApi(project);
+                    teamMemberProjects.push(newProject);
+                }
+
+                let spectatorProjects = [];
+                for(let project of response.data.data.projects.spectator){
+                    let newProject = new Project();
+                    newProject.setProjectFromApi(project);
+                    spectatorProjects.push(newProject);
+                }
+
                 this.user = new User();
-                this.user.setUserFromApi(response.data.data, projects);
-                console.log(this.user.getProjects);
+                this.user.setUserFromApi(response.data.data, authorProjects, adminProjects, teamMemberProjects, spectatorProjects);
                 this.authenticated$.next(true);
                 this.router.navigateByUrl("/projects");
             }).catch(err => {
@@ -86,14 +107,36 @@ export class AuthService implements OnInit {
 
     checkUser() {
         this.ax.get('api/user').then(response => {
-            let projects = [];
-            for(let permission of response.data.data.permissions){
+            let authorProjects = [];
+            for(let project of response.data.data.projects.author){
                 let newProject = new Project();
-                newProject.setProjectFromApi(permission.project);
-                projects.push(newProject);
+                newProject.setProjectFromApi(project);
+                authorProjects.push(newProject);
             }
+
+            let adminProjects = [];
+            for(let project of response.data.data.projects.admin){
+                let newProject = new Project();
+                newProject.setProjectFromApi(project);
+                adminProjects.push(newProject);
+            }
+
+            let teamMemberProjects = [];
+            for(let project of response.data.data.projects.team_member){
+                let newProject = new Project();
+                newProject.setProjectFromApi(project);
+                teamMemberProjects.push(newProject);
+            }
+
+            let spectatorProjects = [];
+            for(let project of response.data.data.projects.spectator){
+                let newProject = new Project();
+                newProject.setProjectFromApi(project);
+                spectatorProjects.push(newProject);
+            }
+
             this.user = new User();
-            this.user.setUserFromApi(response.data.data, projects);
+            this.user.setUserFromApi(response.data.data, authorProjects, adminProjects, teamMemberProjects, spectatorProjects);
             this.user$.next(this.user);
             this.authenticated$.next(true);
         }).catch(() => {

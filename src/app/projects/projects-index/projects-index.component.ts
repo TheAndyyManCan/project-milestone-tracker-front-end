@@ -13,11 +13,21 @@ export class ProjectsIndexComponent implements OnInit {
 
     constructor(private auth: AuthService, private router: Router) {}
 
-    projects = this.auth.user.getProjects;
+    projects = [
+        {title: 'Author', projects: this.auth.user.getAuthorProjects},
+        {title: 'Admin', projects: this.auth.user.getAdminProjects},
+        {title: 'Team Member', projects: this.auth.user.getTeamMemberProjects},
+        {title: 'Spectator', projects: this.auth.user.getSpectatorProjects}
+    ];
 
     ngOnInit() {
         this.auth.user$.subscribe(user => {
-            this.projects = user.getProjects;
+            this.projects = [
+                {title: 'Author', projects: user.getAuthorProjects},
+                {title: 'Admin', projects: user.getAdminProjects},
+                {title: 'Team Member', projects: user.getTeamMemberProjects},
+                {title: 'Spectator', projects: user.getSpectatorProjects}
+            ]
         });
         this.auth.checkUser();
     }
