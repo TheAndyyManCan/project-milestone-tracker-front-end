@@ -6,6 +6,6 @@
         <ul class="text-sm text-white flex" *ngFor="let item of nav;">
           <li class="inline px-2 hover:text-dark-600"><a routerLink="{{ item.link }}">{{ item.text }}</a></li>
         </ul>
-        <li class="inline px-2 hover:text-dark-600 hover:cursor-pointer text-sm text-white" (click)="logout()">Logout</li>
+        <li class="inline px-2 hover:text-dark-600 hover:cursor-pointer text-sm text-white" *ngIf="authenticated" (click)="logout()">Logout</li>
     </nav>
 </div>
