@@ -18,83 +18,20 @@
                 </div>
             </div>
         </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold mb-4">
-                Admin
-            </div>
-            <div class="flex bg-dark-300 rounded-xl p-4 last:mb-4 mb-2" *ngFor="let admin of project.getAdmins">
-                <div class="flex-grow">
-                    {{ admin.getUser.getName }}
-                    <div class="font-thin italic">
-                        {{ admin.getUser.getEmail }}
-                    </div>
-                </div>
-                <div class="flex justify-end" *ngIf="authPermissionLevel >= 4">
-                    <button class="px-2 hover:text-dark-600">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="px-2 hover:text-dark-600">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-            <button type="button"
-                    *ngIf="authPermissionLevel >= 3"
-                    (click)="toggleUserSearch(3)"
-                    class="w-full bg-dark-400 hover:bg-dark-500 p-4 rounded-xl flex align-center justify-center">
-                <i class="fa-solid fa-plus text-2xl"></i>
-            </button>
-            <app-user-search *ngIf="adminUserSearch" (addUser)="onAddUser($event, 3)" [project]="project"></app-user-search>
-        </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold mb-4">
-                Team Members
-            </div>
-            <div class="flex bg-dark-300 rounded-xl p-4 mb-2" *ngFor="let teamMember of project.getTeamMembers">
-                <div class="flex-grow">
-                    {{ teamMember.getUser.getName }}
-                    <div class="font-thin italic">
-                        {{ teamMember.getUser.getEmail }}
-                    </div>
-                </div>
-                <div class="justify-end" *ngIf="authPermissionLevel >= 3">
-                    <button class="px-2 hover:text-dark-600">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-            <button type="button"
-                    *ngIf="authPermissionLevel >= 3"
-                    class="w-full bg-dark-400 hover:bg-dark-500 p-4 rounded-xl flex align-center justify-center"
-                    (click)="toggleUserSearch(2)">
-                <i class="fa-solid fa-plus text-2xl"></i>
-            </button>
-            <app-user-search *ngIf="teamMemberUserSearch" (addUser)="onAddUser($event, 2)" [project]="project"></app-user-search>
-        </div>
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center text-2xl font-semibold mb-4">
-                Spectator
-            </div>
-            <div class="flex bg-dark-300 rounded-xl p-4 mb-2" *ngFor="let spectator of project.getSpectators">
-                <div class="flex-grow">
-                    {{ spectator.getUser.getName }}
-                    <div class="font-thin italic">
-                        {{ spectator.getUser.getEmail }}
-                    </div>
-                </div>
-                <div class="justify-end" *ngIf="authPermissionLevel >= 3">
-                    <button class="px-2 hover:text-dark-600">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-            <button type="button"
-                    *ngIf="authPermissionLevel >= 3"
-                    class="w-full bg-dark-400 hover:bg-dark-500 p-4 rounded-xl flex align-center justify-center"
-                    (click)="toggleUserSearch(1)">
-                <i class="fa-solid fa-plus text-2xl"></i>
-            </button>
-            <app-user-search *ngIf="spectatorUserSearch" (addUser)="onAddUser($event, 1)" [project]="project"></app-user-search>
-        </div>
+        <app-user-permission-column [project]="project"
+            [permissions]="project.getAdmins"
+            [authPermissionLevel]="authPermissionLevel"
+            title="Admin"
+            (addUser)="onAddUser($event, 3)"></app-user-permission-column>
+        <app-user-permission-column [project]="project"
+            [permissions]="project.getTeamMembers"
+            [authPermissionLevel]="authPermissionLevel"
+            title="Team Member"
+            (addUser)="onAddUser($event, 2)"></app-user-permission-column>
+        <app-user-permission-column [project]="project"
+            [permissions]="project.getSpectators"
+            [authPermissionLevel]="authPermissionLevel"
+            title="Spectator"
+            (addUser)="onAddUser($event, 1)"></app-user-permission-column>
     </div>
 </div>

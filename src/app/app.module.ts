@@ -20,6 +20,8 @@ import { EditMilestoneComponent } from './projects/edit-milestone/edit-milestone
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 import { ProjectUsersComponent } from './projects/project-users/project-users.component';
 import { UserSearchComponent } from './projects/user-search/user-search.component';
+import { UserPermissionComponent } from './projects/user-permission/user-permission.component';
+import { UserPermissionColumnComponent } from './projects/user-permission-column/user-permission-column.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { UserSearchComponent } from './projects/user-search/user-search.componen
     EditMilestoneComponent,
     EditProjectComponent,
     ProjectUsersComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    UserPermissionComponent,
+    UserPermissionColumnComponent
   ],
   imports: [
     BrowserModule,

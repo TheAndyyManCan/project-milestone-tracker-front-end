@@ -52,6 +52,10 @@ export class ProjectUsersComponent implements OnInit {
         this.toggleUserSearch(permissionLevel);
     }
 
+    toggleEditMode() {
+
+    }
+
     onCloseForm() {
         this.closeForm.emit();
     }

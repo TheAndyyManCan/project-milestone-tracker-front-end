@@ -1,0 +1,14 @@
+<div class="bg-dark-200 rounded-xl p-4">
+    <div class="text-center text-2xl font-semibold mb-4">
+        {{ title }}
+    </div>
+    <app-user-permission [permission]="permission" [authPermissionLevel]="authPermissionLevel" *ngFor="let permission of permissions"></app-user-permission>
+    <button type="button"
+            *ngIf="authPermissionLevel >= 3"
+            (click)="toggleUserSearch()"
+            class="w-full bg-dark-400 hover:bg-dark-500 p-4 rounded-xl flex align-center justify-center">
+        <i class="fa-solid fa-plus text-2xl" *ngIf="!userSearch"></i>
+        <i class="fa-solid fa-minus text-2xl" *ngIf="userSearch"></i>
+    </button>
+    <app-user-search *ngIf="userSearch" (addUser)="onAddUser($event)" [project]="project"></app-user-search>
+</div>
