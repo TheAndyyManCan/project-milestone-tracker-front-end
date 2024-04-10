@@ -10,6 +10,7 @@ import { MilestoneService } from 'src/app/milestone.service';
 export class MilestoneComponent implements OnInit {
 
     @Input() milestone!: Milestone;
+    @Input() authPermissionLevel!: number;
 
     date!: Date;
     editMode = false;
@@ -24,7 +25,9 @@ export class MilestoneComponent implements OnInit {
     constructor(private milestoneService: MilestoneService) {}
 
     changeMilestoneStatus(status: string){
-        this.milestoneService.updateMilestoneStatus(this.milestone.getId, status);
+        if(this.authPermissionLevel >= 2){
+            this.milestoneService.updateMilestoneStatus(this.milestone.getId, status);
+        }
     }
 
     deleteMilestone(){
@@ -47,5 +50,7 @@ export class MilestoneComponent implements OnInit {
                 this.date = new Date(milestone.getDeadline);
             }
         });
+
+        console.log(this.authPermissionLevel);
     }
 }

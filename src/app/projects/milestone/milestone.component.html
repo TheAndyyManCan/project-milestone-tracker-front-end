@@ -8,7 +8,8 @@
             [ngClass]=
             "{ 'bg-dark-400 !text-white font-semibold': milestone.getStatus == button.status,
             'bg-green-700 hover:bg-green-600': milestone.getStatus == button.status && milestone.getStatus == 'complete',
-            'bg-red-700 hover:bg-red-600': milestone.getStatus == button.status && milestone.getStatus == 'abandoned' }"
+            'bg-red-700 hover:bg-red-600': milestone.getStatus == button.status && milestone.getStatus == 'abandoned',
+            'hover:cursor-not-allowed': authPermissionLevel < 2}"
             (click)="changeMilestoneStatus(button.status)"
             *ngFor="let button of statusButtons">{{ button.name }}</button>
     </div>
@@ -19,10 +20,10 @@
         <button (click)="toggleExpand()" class="px-2 hover:text-dark-600">
             <i class="fa-solid fa-caret-down"></i>
         </button>
-        <button (click)="toggleEditMode()" class="px-2 hover:text-dark-600">
+        <button *ngIf="authPermissionLevel >= 3" (click)="toggleEditMode()" class="px-2 hover:text-dark-600">
             <i class="fa-solid fa-pen"></i>
         </button>
-        <button (click)="deleteMilestone()" class="px-2 hover:text-dark-600">
+        <button *ngIf="authPermissionLevel >= 3" (click)="deleteMilestone()" class="px-2 hover:text-dark-600">
             <i class="fa-solid fa-trash"></i>
         </button>
     </div>

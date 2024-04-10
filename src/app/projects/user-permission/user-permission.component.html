@@ -1,16 +1,19 @@
-<div class="flex bg-dark-300 rounded-xl p-4 last:mb-4 mb-2">
-    <div class="flex-grow">
-        {{ permission.getUser.getName }}
-        <div class="font-thin italic">
-            {{ permission.getUser.getEmail }}
+<div class="bg-dark-300 rounded-xl p-4 mb-2">
+    <div class="flex">
+        <div class="flex-grow">
+            {{ permission.getUser.getName }}
+            <div class="font-thin italic">
+                {{ permission.getUser.getEmail }}
+            </div>
+        </div>
+        <div class="flex justify-end" *ngIf="authPermissionLevel >= 4">
+            <button (click)="toggleEditMode()" class="px-2 hover:text-dark-600">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="px-2 hover:text-dark-600" (click)="deleteUser()">
+                <i class="fa-solid fa-trash"></i>
+            </button>
         </div>
     </div>
-    <div class="flex justify-end" *ngIf="authPermissionLevel >= 4">
-        <button (click)="toggleEditMode()" class="px-2 hover:text-dark-600">
-            <i class="fa-solid fa-pen"></i>
-        </button>
-        <button class="px-2 hover:text-dark-600">
-            <i class="fa-solid fa-trash"></i>
-        </button>
-    </div>
+    <app-edit-user-permission [permission]="permission" *ngIf="editMode"></app-edit-user-permission>
 </div>

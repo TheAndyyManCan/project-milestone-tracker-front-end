@@ -22,6 +22,7 @@ import { ProjectUsersComponent } from './projects/project-users/project-users.co
 import { UserSearchComponent } from './projects/user-search/user-search.component';
 import { UserPermissionComponent } from './projects/user-permission/user-permission.component';
 import { UserPermissionColumnComponent } from './projects/user-permission-column/user-permission-column.component';
+import { EditUserPermissionComponent } from './projects/edit-user-permission/edit-user-permission.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserPermissionColumnComponent } from './projects/user-permission-column
     ProjectUsersComponent,
     UserSearchComponent,
     UserPermissionComponent,
-    UserPermissionColumnComponent
+    UserPermissionColumnComponent,
+    EditUserPermissionComponent
   ],
   imports: [
     BrowserModule,

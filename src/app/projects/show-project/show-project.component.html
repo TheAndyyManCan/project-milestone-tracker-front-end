@@ -13,7 +13,8 @@
             <div class="p-6">
                 <app-milestone
                     *ngFor="let milestone of project.getMilestones"
-                    [milestone]="milestone">
+                    [milestone]="milestone"
+                    [authPermissionLevel]="permissionLevel">
                 </app-milestone>
                 <app-add-milestone *ngIf="addMilestone" (newMilestone)="onNewMilestone($event)" (closeMilestone)="toggleAddMilestone()"></app-add-milestone>
                 <app-project-users *ngIf="showUsers" (closeForm)="toggleShowUsers()" [project]="project" [project$]="project$.asObservable()" [authPermissionLevel]="permissionLevel"></app-project-users>

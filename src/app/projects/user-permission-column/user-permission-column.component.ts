@@ -3,6 +3,7 @@ import { Project } from '../project.class';
 import { User } from 'src/app/user.class';
 import { Permission } from '../permission.class';
 import { Observable } from 'rxjs';
+import { PermissionsService } from 'src/app/permissions.service';
 
 @Component({
   selector: 'app-user-permission-column',
@@ -21,13 +22,14 @@ export class UserPermissionColumnComponent {
 
     userSearch: boolean = false;
 
-    constructor() {}
+    constructor(private permissionService: PermissionsService) {}
 
     toggleUserSearch() {
         this.userSearch = !this.userSearch;
     }
 
     onAddUser(user: User) {
-
+        this.addUser.emit(user);
+        this.toggleUserSearch();
     }
 }

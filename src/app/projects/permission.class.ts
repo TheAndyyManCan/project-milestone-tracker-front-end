@@ -23,7 +23,7 @@ export class Permission {
 
     public setPermissionFromApi(apiResponse: any, user: User){
         this.setId = apiResponse.id;
-        this.setPermissionLevel = apiResponse.permissionLevel;
+        this.setPermissionLevel = apiResponse.permission_level;
         this.setUser = user;
     }
 }

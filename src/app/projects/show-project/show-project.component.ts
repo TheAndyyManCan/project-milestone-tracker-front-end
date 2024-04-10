@@ -17,7 +17,7 @@ export class ShowProjectComponent implements OnInit {
     project: Project = new Project();
     project$ = new Subject<Project>();
 
-    showUsers: boolean = true;
+    showUsers: boolean = false;
     addMilestone: boolean = false;
     editMode: boolean = false;
     permissionLevel: number = 0;
@@ -66,7 +66,7 @@ export class ShowProjectComponent implements OnInit {
                 this.permission = 'Spectator';
                 break;
             case 2:
-                this.permission = 'Team member';
+                this.permission = 'Team Member';
                 break;
             case 3:
                 this.permission = 'Admin';

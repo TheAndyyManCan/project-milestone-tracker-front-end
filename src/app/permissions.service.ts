@@ -36,4 +36,27 @@ export class PermissionsService {
             console.log(err);
         });
     }
+
+    updatePermission(permissionId: number, permissionLevel: number) {
+        this.ax.patch('api/v1/permissions/' + permissionId + '/level', {
+            permission_level: permissionLevel
+        }).then(response => {
+            let project = new Project();
+            project.setProjectFromApi(response.data.data);
+            this.addPermission$.next(project);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    deletePermission(permissionId: number) {
+        this.ax.delete('api/v1/permissions/' + permissionId).then(response => {
+            let project = new Project();
+            project.setProjectFromApi(response.data.data);
+            this.addPermission$.next(project);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 }
+
