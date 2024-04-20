@@ -1,15 +1,15 @@
-<div class="p-20">
-    <div class="mt-20 selection:bg-dark-300">
-        <div class="text-9xl text-white font-bold">Track Milestones</div>
-        <div class="text-8xl text-white fond-bold mt-8">Share Your Progress</div>
-        <div class="text-7xl text-white fond-semibold mt-10">Get It Done</div>
-        <div class="mt-12 flex">
-            <a routerLink="register" *ngIf="!authenticated" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Sign Up</a>
-            <a routerLink="login" *ngIf="!authenticated" class="ml-4 p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Login</a>
-            <a routerLink="projects" *ngIf="authenticated" class="p-4 rounded-xl bg-dark-600 font-semibold hover:bg-dark-500">Projects</a>
+<div class="container">
+    <div class="title-container">
+        <div class="title-text" id="title1">Track Milestones</div>
+        <div class="title-text" id="title2">Share Your Progress</div>
+        <div class="title-text" id="title3">Get It Done</div>
+        <div class="button-container">
+            <a routerLink="register" *ngIf="!authenticated" class="button">Sign Up</a>
+            <a routerLink="login" *ngIf="!authenticated" class="button">Login</a>
+            <a routerLink="projects" *ngIf="authenticated" class="button">Projects</a>
         </div>
     </div>
 </div>
-<div class="mx-auto w-3/4 bg-dark-200 rounded-xl p-6 text-dark-600 text-center mt-10">
+<div class="subtext">
     Track your project goals through achievable milestones and keep yourself accountable by sharing your progress with team members, managers and friends.
 </div>

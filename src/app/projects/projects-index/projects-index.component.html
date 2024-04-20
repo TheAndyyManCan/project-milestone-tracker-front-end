@@ -2,7 +2,7 @@
 <div class="ml-12 mb-4 text-center md:text-left">
     <a routerLink="/projects/create" class="font-semibold hover:text-dark-600 hover:cursor-pointer"><i class="fa-solid fa-plus"></i> New Project</a>
 </div>
-<div *ngFor="let permission of projects" class="mb-4">
+<div *ngFor="let permission of projects" class="mb-8">
     <div class="ml-12 text-xl font-semibold mb-4" *ngIf="permission.projects.length > 0">
         {{ permission.title }}
     </div>

@@ -30,10 +30,10 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit(){
-        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!, this.registerForm.controls.confirmPassword.value!).then(response => {
+        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!, this.registerForm.controls.confirmPassword.value!).then(() => {
             this.error = false;
             this.router.navigateByUrl("/login");
-        }).catch(err => {
+        }).catch(() => {
             this.error = true;
         })
     }
