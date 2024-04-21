@@ -1,11 +1,11 @@
-<div class="bg-dark-300 w-full p-8 flex flex-col">
-    <div class="p-4 text-4xl font-bold text-white">
-        <a routerLink="/" class="hover:text-dark-600">Project Milestone Tracker</a>
+<div class="container">
+    <div class="title-container">
+        <a routerLink="/">Project Milestone Tracker</a>
     </div>
-    <nav class="flex lg:right-0 lg:absolute my-auto p-6">
-        <ul class="text-sm text-white flex" *ngFor="let item of nav;">
-          <li class="inline px-2 hover:text-dark-600"><a routerLink="{{ item.link }}">{{ item.text }}</a></li>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-list-item" *ngFor="let item of nav;"><a routerLink="{{ item.link }}">{{ item.text }}</a></li>
+            <li class="nac-list-item" *ngIf="authenticated" (click)="logout()">Logout</li>
         </ul>
-        <li class="inline px-2 hover:text-dark-600 hover:cursor-pointer text-sm text-white" *ngIf="authenticated" (click)="logout()">Logout</li>
     </nav>
 </div>
