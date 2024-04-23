@@ -44,4 +44,5 @@
 
 .nav-list-item:hover {
     color: var(--dark-600);
+    cursor: pointer;
 }

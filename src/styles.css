@@ -24,3 +24,74 @@ body {
 body::selection {
     background-color: var(--dark-300);
 }
+
+/**
+ * Forms
+ **/
+.form-container {
+    border-width: 1px;
+    border-color: var(--dark-600);
+    border-radius: 0.75rem;
+    background-color: var(--dark-300);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form {
+    padding: 1.5rem;
+}
+
+.form-input-container {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+}
+
+.form-label {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-input {
+    font-weight: 600;
+    background-color: var(--dark-200);
+    border-radius: 0.5rem;
+    color: var(--dark-600);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+    height: 2rem;
+}
+
+.form-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.submit-button {
+    background-color: var(--dark-600);
+    color: var(--dark-100);
+    font-weight: 550;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.submit-button:hover {
+    background-color: var(--dark-500);
+}
+
+.form-error {
+    color: red;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+}
