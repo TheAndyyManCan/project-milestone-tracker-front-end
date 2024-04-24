@@ -1,0 +1,57 @@
+.content {
+    padding: 4rem;
+}
+
+.project-container {
+    padding: 2.5rem;
+    background-color: var(--dark-200);
+    border-radius: 0.75rem;
+}
+
+.title-container {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.edit-button {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.edit-button:hover {
+    color: var(--dark-600);
+}
+
+.permission-level {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.milestones-container {
+    padding: 1.5rem;
+}
+
+.options-container {
+    display: flex;
+}
+
+.add-button, .users-button {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.users-button {
+    margin-left: 0.75rem;
+}
+
+.add-button:hover, .users-button:hover {
+    color: var(--dark-600);
+}
