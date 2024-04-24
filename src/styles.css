@@ -15,10 +15,6 @@ body {
     font-family: figtree;
     color: white;
     background-color: var(--dark-100);
-
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 body::selection {
