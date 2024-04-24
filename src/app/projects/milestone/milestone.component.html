@@ -1,60 +1,58 @@
-<div *ngIf="!editMode" class="flex p-4 bg-dark-300 mt-2 items-center" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
-    <div class="font-semibold w-1/4 selection:bg-dark-600" [ngClass]="{ 'line-through hover:no-underline': milestone.getStatus == 'abandoned' }">
+<div *ngIf="!editMode" class="milestone-container" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
+    <div class="milestone-title" [ngClass]="{ 'line-through hover:no-underline': milestone.getStatus == 'abandoned' }">
         {{ milestone.getName }}
     </div>
-    <div class="flex ml-4 flex-grow">
+    <div class="buttons-container">
         <button type="button"
-            class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold"
+            class="default-button"
             [ngClass]=
-            "{ 'bg-dark-400 !text-white font-semibold': milestone.getStatus == button.status,
-            'bg-green-700 hover:bg-green-600': milestone.getStatus == button.status && milestone.getStatus == 'complete',
-            'bg-red-700 hover:bg-red-600': milestone.getStatus == button.status && milestone.getStatus == 'abandoned',
+            "{ 'current-status-button': milestone.getStatus == button.status,
+            'completed-selected-button': milestone.getStatus == button.status && milestone.getStatus == 'complete',
+            'abandoned-selected-button': milestone.getStatus == button.status && milestone.getStatus == 'abandoned',
             'hover:cursor-not-allowed': authPermissionLevel < 2}"
             (click)="changeMilestoneStatus(button.status)"
             *ngFor="let button of statusButtons">{{ button.name }}</button>
     </div>
-    <div class="flex w-1/4 justify-end">
-        <div class="mr-6 selection:bg-dark-600">
+    <div class="info-container">
+        <div class="time-left">
             {{ milestone.getTimeLeft }}
         </div>
-        <button (click)="toggleExpand()" class="px-2 hover:text-dark-600">
+        <button (click)="toggleExpand()" class="info-button">
             <i class="fa-solid fa-caret-down"></i>
         </button>
-        <button *ngIf="authPermissionLevel >= 3" (click)="toggleEditMode()" class="px-2 hover:text-dark-600">
+        <button *ngIf="authPermissionLevel >= 3" (click)="toggleEditMode()" class="info-button">
             <i class="fa-solid fa-pen"></i>
         </button>
-        <button *ngIf="authPermissionLevel >= 3" (click)="deleteMilestone()" class="px-2 hover:text-dark-600">
+        <button *ngIf="authPermissionLevel >= 3" (click)="deleteMilestone()" class="info-button">
             <i class="fa-solid fa-trash"></i>
         </button>
     </div>
 </div>
 
-<div *ngIf="expand && !editMode" class="selection:bg-dark-600 bg-dark-300 p-4 rounded-b-xl mb-4">
-    <div class="flex">
-        <div class="w-1/2">
-            <div class="font-semibold">Description</div>
-            <div>{{ milestone.getDescription }}</div>
-            <div class="font-semibold mt-2">Deadline</div>
-            <div>{{ date | date:'fullDate' }}</div>
-        </div>
-        <div class="w-1/2 bg-dark-200 rounded-xl p-4">
-            <div class="font-semibold">Comments</div>
-            <div class="bg-dark-300 rounded-xl p-2 mt-2 flex">
-                <div class="rounded-full bg-dark-200 h-10 w-10 mt-2 text-center flex justify-center items-center font-bold text-dark-600">
-                    AM
-                </div>
-                <div class="p-2">
-                    <div class="font-semibold text-dark-600 selection:bg-dark-200">Andy McDonald</div>
-                    This is what a comment will look like
-                </div>
+<div *ngIf="expand && !editMode" class="expand-container">
+    <div class="expand-info-container">
+        <div class="expand-info-heading">Description</div>
+        <div>{{ milestone.getDescription }}</div>
+        <div class="expand-info-heading">Deadline</div>
+        <div>{{ date | date:'fullDate' }}</div>
+    </div>
+    <div class="comments-container">
+        <div class="comments-heading">Comments</div>
+        <div class="comment-container">
+            <div class="comment-icon">
+                AM
             </div>
-            <form>
-                <textarea
-                        name="comment"
-                        class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none border border-dark-600 mt-4 placeholder:italic placeholder:font-thin placeholder:text-opacity-25"
-                        placeholder="Write a comment..."></textarea>
-            </form>
+            <div class="comment">
+                <div class="comment-name">Andy McDonald</div>
+                This is what a comment will look like
+            </div>
         </div>
+        <form>
+            <textarea
+                    name="comment"
+                    class="comment-textarea"
+                    placeholder="Write a comment..."></textarea>
+        </form>
     </div>
 </div>
 
