@@ -1,34 +1,34 @@
-<div class="mt-8 text-center text-4xl font-semibold">
+<div class="title">
     Create Project
 </div>
-<div class="p-20">
-    <div class="border border-dark-600 rounded-xl bg-dark-300 w-1/2 mx-auto">
-        <form class="p-6" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-            <div class="mx-2 p-2">
-                <label for="title" class="text-md text-white mx-auto">Title</label><br />
+<div class="content">
+    <div class="form-container">
+        <form class="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <div class="form-input-container">
+                <label for="title" class="form-label">Title</label><br />
                 <input type="text"
                        name="title"
-                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                       class="form-input"
                        formControlName="title" />
             </div>
-            <div class="text-sm font-semibold text-white uppercase ml-4" *ngIf="projectForm.controls.title.invalid && projectForm.controls.title.touched">
+            <div class="form-error" *ngIf="projectForm.controls.title.invalid && projectForm.controls.title.touched">
                 Please enter a title
             </div>
-            <div class="mx-2 p-2">
-                <label for="deadline" class="text-md text-white mx-auto">Deadline</label><br />
+            <div class="form-input-container">
+                <label for="deadline" class="form-label">Deadline</label><br />
                 <input type="date"
                        name="deadline"
-                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 h-8 focus:ring-dark-600 focus:outline-none"
+                       class="form-input"
                        formControlName="deadline" />
             </div>
-            <div class="mx-2 p-2">
-                <label for="description" class="text-md text-white mx-auto">Description</label><br />
+            <div class="form-input-container">
+                <label for="description" class="form-label">Description</label><br />
                 <textarea
                        name="description"
-                       class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
+                       class="form-textarea"
                        formControlName="description"></textarea>
             </div>
-            <button type="submit" [disabled]="!authenticated || projectForm.invalid" class="bg-dark-600 text-dark-100 font-semibold p-2 rounded-lg hover:bg-dark-500 ml-4 mt-2 disabled:cursor-not-allowed">Create Project</button>
+            <button type="submit" [disabled]="!authenticated || projectForm.invalid" class="submit-button">Create Project</button>
         </form>
     </div>
 </div>

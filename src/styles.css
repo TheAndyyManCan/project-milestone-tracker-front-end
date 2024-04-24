@@ -21,6 +21,15 @@ body::selection {
     background-color: var(--dark-300);
 }
 
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+}
+
 /**
  * Forms
  **/
@@ -81,8 +90,12 @@ body::selection {
     background-color: var(--dark-500);
 }
 
+.submit-button:disabled {
+    cursor: not-allowed;
+}
+
 .form-error {
-    color: red;
+    color: white;
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-transform: uppercase;
@@ -90,4 +103,20 @@ body::selection {
     margin-left: auto;
     margin-right: auto;
     padding: 0.5rem;
+}
+
+.form-textarea {
+    font-weight: 600;
+    background-color: var(--dark-200);
+    border-radius: 0.5rem;
+    color: var(--dark-600);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+}
+
+.form-textarea:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
 }
