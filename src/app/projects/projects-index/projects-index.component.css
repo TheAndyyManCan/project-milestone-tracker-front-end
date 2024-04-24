@@ -1,0 +1,89 @@
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+}
+
+.new-project-button-container {
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.new-project-button {
+    font-weight: 600;
+}
+
+.new-project-button:hover {
+    color: var(--dark-600);
+    cursor: pointer;
+}
+
+.permission-container {
+    margin-bottom: 2rem;
+}
+
+.permission-title {
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.project-link {
+    background-color: var(--dark-200);
+    border-radius: 0.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.project-link:hover {
+    background-color: var(--dark-300);
+    cursor: pointer;
+}
+
+.project-title {
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.project-description {
+    color: var(--dark-600);
+    margin-top: 0.5rem;
+}
+
+.project-deadline {
+    margin-top: 1rem;
+}
+
+.project-arrow {
+    text-align: right;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
