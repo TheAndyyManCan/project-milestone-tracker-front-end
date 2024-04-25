@@ -54,3 +54,20 @@
  .deadline-container {
      width: 50%;
  }
+
+ .deadline-input {
+    font-weight: 600;
+    background-color: var(--dark-200);
+    border-radius: 0.5rem;
+    color: var(--dark-600);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+    height: 4rem;
+ }
+
+ .deadline-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
