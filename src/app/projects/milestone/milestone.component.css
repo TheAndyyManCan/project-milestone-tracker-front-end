@@ -15,67 +15,6 @@
     background-color: var(--dark-600);
 }
 
-/**
- * Status buttons
- */
-.buttons-container {
-    display: flex;
-    margin-left: 1rem;
-    flex-grow: 1;
-}
-
-.default-button {
-    width: 25%;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    border: 1px solid;
-    border-color: var(--dark-600);
-    background-color: var(--dark-200);
-    color: var(--dark-600);
-}
-
-.current-status-button, .completed-selected-button, .abandoned-selected-button {
-    width: 25%;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    border: 1px solid;
-    border-color: var(--dark-600);
-    background-color: var(--dark-400);
-    color: white;
-    font-weight: 600;
-}
-
-.completed-selected-button {
-    background-color: rgba(21, 128, 61, 1);
-}
-
-.abandoned-selected-button {
-    background-color: rgb(185, 28, 28);
-}
-
-.default-button:hover, .current-status-button:hover, .completed-selected-button:hover, .abandoned-selected-button:hover {
-    background-color: var(--dark-600);
-    color: var(--dark-100);
-    font-weight: 600;
-}
-
-.completed-selected-button:hover {
-    background-color: rgb(22, 163, 74);
-    color: white;
-}
-
-.abandoned-selected-button:hover {
-    background-color: rgb(220, 38, 38);
-    color: white;
-}
-
-.buttons-container .default-button:first-child {
-    border-top-left-radius: 0.75rem;
-    border-bottom-left-radius: 0.75rem;
-}
-
-.buttons-container .default-button:last-child {
-    border-top-right-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
-}
 
 /**
  * Info
