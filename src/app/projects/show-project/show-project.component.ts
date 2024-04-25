@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { ProjectService } from '../project.service';
 import { Project } from '../project.class';
-import { Milestone } from '../milestone.class';
 import { MilestoneService } from 'src/app/milestone.service';
 import { Subject } from 'rxjs';
 
@@ -18,7 +17,7 @@ export class ShowProjectComponent implements OnInit {
     project$ = new Subject<Project>();
 
     showUsers: boolean = false;
-    addMilestone: boolean = false;
+    addMilestone: boolean = true;
     editMode: boolean = false;
     permissionLevel: number = 0;
     permission: string = 'none';

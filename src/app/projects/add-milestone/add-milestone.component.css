@@ -1,0 +1,33 @@
+.content-container {
+    padding: 1rem;
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    align-items: center;
+    position: relative;
+}
+
+.exit-button-container {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.exit-button:hover {
+    cursor: pointer;
+    color: var(--dark-600);
+}
+
+.second-row-container {
+    display: flex;
+    align-items: center;
+}
+
+#deadline-container {
+    width: 50%;
+}
+
+.status-container {
+    flex-grow: 1;
+    margin-right: 1rem;
+}

@@ -13,7 +13,7 @@ export class MilestoneComponent implements OnInit {
     @Input() authPermissionLevel!: number;
 
     date!: Date;
-    editMode = true;
+    editMode = false;
     expand = false;
     statusButtons = [
         {name: 'Todo', status: 'todo'},
