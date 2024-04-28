@@ -1,10 +1,11 @@
 .container {
     background-color: var(--dark-300);
-    width: 100vw;
-    max-width: 100%;
+    width: 100%;
     padding: 2rem;
     display: flex;
     justify-content: center;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
 }
 
 .title-container {
@@ -15,6 +16,8 @@
     color: white;
     justify-content: flex-start;
     flex-grow: 1;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .title-container:hover {
@@ -28,6 +31,7 @@
     padding: 1.5rem;
     justify-content: flex-end;
     flex-grow: 1;
+    margin-right: 4rem;
 }
 
 .nav-list {

@@ -4,6 +4,7 @@
     background-color: var(--dark-300);
     margin-top: 0.5rem;
     align-items: center;
+    border-radius: 0.75rem;
 }
 
 .milestone-title {
