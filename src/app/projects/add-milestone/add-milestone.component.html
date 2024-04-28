@@ -26,29 +26,20 @@
                     <button type="button"
                         class="default-button"
                         (click)="setStatus(button.status)"
-                        [ngClass]="{ 'bg-dark-400 !text-white font-semibold': status == button.status }"
+                        [ngClass]="{ 'current-status-button': status == button.status }"
                         *ngFor="let button of statusButtons">{{ button.name }}</button>
                 </div>
             </div>
         </div>
-        <div class="mx-2 p-2">
-            <label for="description" class="text-md text-white mx-auto">Description</label><br />
+        <div class="form-input-container">
+            <label for="description" class="form-label">Description</label><br />
             <textarea
                     name="description"
-                    class="font-semibold bg-dark-200 rounded-lg text-dark-600 w-full mx-auto p-2 focus:ring-dark-600 focus:outline-none"
+                    class="form-textarea"
                     formControlName="description"></textarea>
         </div>
-        <!-- <div class="flex mx-4 flex-grow"> -->
-        <!--     <button type="button" -->
-        <!--         class="w-1/4 first:rounded-l-xl last:rounded-r-xl py-2 px-4 border border-dark-600 bg-dark-200 text-dark-600 hover:bg-dark-600 hover:text-dark-100 hover:font-semibold" -->
-        <!--         (click)="setStatus(button.status)" -->
-        <!--         [ngClass]="{ 'bg-dark-400 !text-white font-semibold': status == button.status }" -->
-        <!--         *ngFor="let button of statusButtons">{{ button.name }}</button> -->
-        <!-- </div> -->
-        <div class="flex flex-grow ml-4 mt-4">
-            <button type="submit" [disabled]="milestoneForm.invalid" class="py-2 px-3 rounded-xl bg-dark-600 text-dark-100 hover:bg-dark-500 font-semibold disabled:cursor-not-allowed">
-                Submit
-            </button>
-        </div>
+        <button type="submit" [disabled]="milestoneForm.invalid" class="submit-button">
+            Submit
+        </button>
     </form>
 </div>

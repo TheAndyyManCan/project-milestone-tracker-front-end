@@ -1,0 +1,57 @@
+.content-container {
+    padding: 1rem;
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    align-items: center;
+    position: relative;
+}
+
+.close-button-container {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.close-button:hover {
+    cursor: pointer;
+    color: var(--dark-600);
+}
+
+.users-grid {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.permission-column {
+    background-color: var(--dark-200);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.permission-column-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+.user-container {
+    display: flex;
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.user-name {
+    flex-grow: 1;
+}
+
+.user-email {
+    font-weight: 100;
+    font-style: italic;
+}

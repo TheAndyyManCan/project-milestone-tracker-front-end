@@ -1,18 +1,18 @@
-<div class="p-4 bg-dark-300 rounded-xl mt-4 items-center relative">
-    <div class="absolute top-3 right-3">
-        <button class="hover:cursor-pointer hover:text-dark-600" type="button" (click)="onCloseForm()">
+<div class="content-container">
+    <div class="close-button-container">
+        <button class="close-button" type="button" (click)="onCloseForm()">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
-    <div class="mx-8 grid grid-cols-4 gap-4">
-        <div class="bg-dark-200 rounded-xl p-4">
-            <div class="text-center mb-4 text-2xl font-semibold">
+    <div class="users-grid">
+        <div class="permission-column">
+            <div class="permission-column-title">
                 Author
             </div>
-            <div class="flex bg-dark-300 rounded-xl p-4" *ngFor="let author of project.getAuthors">
-                <div class="flex-grow">
+            <div class="user-container" *ngFor="let author of project.getAuthors">
+                <div class="user-name">
                     {{ author.getUser.getName }}
-                    <div class="font-thin italic">
+                    <div class="user-email">
                         {{ author.getUser.getEmail }}
                     </div>
                 </div>

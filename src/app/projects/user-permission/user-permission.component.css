@@ -1,0 +1,29 @@
+.user-container {
+    display: flex;
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-name {
+    flex-grow: 1;
+}
+
+.user-email {
+    font-weight: 100;
+    font-style: italic;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.control-button {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.control-button:hover {
+    color:var(--dark-600);
+}

@@ -1,12 +1,12 @@
-<div class="mt-4">
-    <form [formGroup]="editPermissionLevelForm" (ngSubmit)="onSubmit()" class="w-full flex">
-        <select formControlName="permissionLevel" class="bg-dark-200 p-2 w-full rounded-xl hover:cursor-pointer text-dark-600 font-semibold">
+<div class="content-container">
+    <form [formGroup]="editPermissionLevelForm" (ngSubmit)="onSubmit()" class="edit-form">
+        <select formControlName="permissionLevel" class="permission-select">
             <option value=1>Spectator</option>
             <option value=2>Team Member</option>
             <option value=3>Admin</option>
         </select>
-        <div class="flex justify-end ml-2">
-            <button type="submit" class="px-2 hover:text-dark-600">
+        <div class="submit-container">
+            <button type="submit" class="submit-check">
                 <i class="fa-solid fa-check"></i>
             </button>
         </div>

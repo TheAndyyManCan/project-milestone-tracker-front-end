@@ -1,0 +1,27 @@
+.permission-column {
+    background-color: var(--dark-200);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.permission-column-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+.add-user-button {
+    width: 100%;
+    background-color: var(--dark-400);
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-user-button:hover {
+    background-color: var(--dark-500);
+}

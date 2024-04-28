@@ -1,0 +1,41 @@
+.content-container {
+    margin-top: 1rem;
+}
+
+.form-input {
+    border: 1px solid;
+    border-color: var(--dark-600);
+    border-radius: 0.75rem;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+}
+
+.form-input::placeholder {
+    font-weight: 100;
+    font-style: italic;
+}
+
+.list-container {
+    margin-top: 0.5rem;
+}
+
+.list-item {
+    padding: 1rem;
+    background-color: var(--dark-300);
+    width: 100%;
+    text-align: center;
+}
+
+.list-item:hover {
+    cursor: pointer;
+    background-color: var(--dark-400);
+}
+
+.list-container .list-item:first-child {
+    border-top-right-radius: 0.75rem;
+    border-top-left-radius: 0.75rem;
+}
+
+.list-container .list-item:last-child {
+    border-bottom-right-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+}

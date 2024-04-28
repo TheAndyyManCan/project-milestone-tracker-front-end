@@ -1,0 +1,39 @@
+.content-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.edit-form {
+    width: 100%;
+    display: flex;
+}
+
+.permission-select {
+    background-color: var(--dark-200);
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    color: var(--dark-600);
+    font-weight: 600;
+}
+
+.permission-select:hover {
+    cursor: pointer;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 0.5rem;
+}
+
+.submit-check {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.submit-check:hover {
+    color: var(--dark-600);
+}
