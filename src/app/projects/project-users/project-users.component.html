@@ -5,19 +5,10 @@
         </button>
     </div>
     <div class="users-grid">
-        <div class="permission-column">
-            <div class="permission-column-title">
-                Author
-            </div>
-            <div class="user-container" *ngFor="let author of project.getAuthors">
-                <div class="user-name">
-                    {{ author.getUser.getName }}
-                    <div class="user-email">
-                        {{ author.getUser.getEmail }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-user-permission-column [project]="project"
+            [permissions]="project.getAuthors"
+            [authPermissionLevel]="authPermissionLevel"
+            title="Author"></app-user-permission-column>
         <app-user-permission-column [project]="project"
             [permissions]="project.getAdmins"
             [authPermissionLevel]="authPermissionLevel"

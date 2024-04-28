@@ -16,7 +16,7 @@ export class ShowProjectComponent implements OnInit {
     project: Project = new Project();
     project$ = new Subject<Project>();
 
-    showUsers: boolean = true;
+    showUsers: boolean = false;
     addMilestone: boolean = false;
     editMode: boolean = false;
     permissionLevel: number = 0;
