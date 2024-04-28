@@ -38,6 +38,16 @@ button:hover {
     cursor: pointer;
 }
 
+input {
+    border: none;
+    font-family: figtree;
+}
+
+textarea {
+    border: none;
+    font-family: figtree;
+}
+
 .title {
     flex-grow: 1;
     text-align: center;

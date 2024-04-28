@@ -1,10 +1,17 @@
-.milestone-container {
+.milestone-container, .edit-mode {
     display: flex;
     padding: 1rem;
     background-color: var(--dark-300);
     margin-top: 0.5rem;
     align-items: center;
     border-radius: 0.75rem;
+}
+
+.edit-mode {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0rem;
+    border-bottom-left-radius: 0rem;
 }
 
 .milestone-title {

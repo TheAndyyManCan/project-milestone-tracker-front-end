@@ -1,4 +1,4 @@
-<div *ngIf="!editMode" class="milestone-container" [ngClass]="{'rounded-t-xl': expand, 'rounded-xl': !expand}">
+<div *ngIf="!editMode" class="milestone-container" [ngClass]="{'edit-mode': expand}">
     <div class="milestone-title" [ngClass]="{ 'line-through hover:no-underline': milestone.getStatus == 'abandoned' }">
         {{ milestone.getName }}
     </div>
