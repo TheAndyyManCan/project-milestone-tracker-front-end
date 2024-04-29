@@ -48,6 +48,14 @@ textarea {
     font-family: figtree;
 }
 
+ul {
+    padding-left: 0;
+}
+
+select {
+    border: none;
+}
+
 .title {
     flex-grow: 1;
     text-align: center;
@@ -94,7 +102,7 @@ textarea {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0.5rem;
+    padding: 0rem 0.5rem 0rem 0.5rem;
     height: 2rem;
 }
 

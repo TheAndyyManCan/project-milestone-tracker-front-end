@@ -1,9 +1,13 @@
-.user-container {
+.user-container, .user-container-edit-mode {
     display: flex;
     background-color: var(--dark-300);
     border-radius: 0.75rem;
     padding: 1rem;
     margin-bottom: 0.5rem;
+}
+
+.user-container-edit-mode {
+    border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .user-name {

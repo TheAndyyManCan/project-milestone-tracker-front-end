@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -23,18 +22,17 @@ export class RegisterComponent implements OnInit {
         confirmPassword: new FormControl("", Validators.required)
     });
 
-    constructor(private auth: AuthService, private router: Router){}
+    constructor(private auth: AuthService){}
 
     ngOnInit() {
         this.auth.checkUser();
+
+        this.auth.registrationError$.subscribe(error => {
+            this.error = error;
+        });
     }
 
     onSubmit(){
-        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!, this.registerForm.controls.confirmPassword.value!).then(() => {
-            this.error = false;
-            this.router.navigateByUrl("/login");
-        }).catch(() => {
-            this.error = true;
-        })
+        this.auth.register(this.registerForm.controls.name.value!, this.registerForm.controls.email.value!, this.registerForm.controls.password.value!, this.registerForm.controls.confirmPassword.value!);
     }
 }

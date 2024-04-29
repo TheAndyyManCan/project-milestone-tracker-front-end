@@ -1,4 +1,4 @@
-<div class="user-container">
+<div class="user-container" [ngClass]="{'user-container-edit-mode': editMode}">
     <div class="user-name">
         {{ permission.getUser.getName }}
         <div class="user-email">

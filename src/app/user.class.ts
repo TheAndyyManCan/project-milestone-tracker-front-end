@@ -32,19 +32,51 @@ export class User {
     private set setId(id: number){this.id = id;}
     private set setEmail(email: string){this.email = email;}
     private set setName(name: string){this.name = name;}
-    private set setAuthorProjects(projects: Project[]){this.authorProjects = projects;}
-    private set setAdminProjects(projects: Project[]){this.adminProjects = projects;}
-    private set setTeamMemberProjects(projects: Project[]){this.teamMemberProjects = projects;}
-    private set setSpectatorProjects(projects: Project[]){this.spectatorProjects = projects;}
 
-    public setUserFromApi(apiResponse: any, authorProjects: Project[], adminProjects: Project[], teamMemberProjects: Project[], spectatorProjects: Project[]) {
+    private set setAuthorProjects(projects: any){
+        this.authorProjects = [];
+        for(let project of projects){
+            let newProject = new Project();
+            newProject.setProjectFromApi(project);
+            this.authorProjects.push(newProject);
+        }
+    }
+
+    private set setAdminProjects(projects: any){
+        this.adminProjects = [];
+        for(let project of projects){
+            let newProject = new Project();
+            newProject.setProjectFromApi(project);
+            this.adminProjects.push(newProject);
+        }
+    }
+
+    private set setTeamMemberProjects(projects: any){
+        this.teamMemberProjects = [];
+        for(let project of projects){
+            let newProject = new Project();
+            newProject.setProjectFromApi(project);
+            this.teamMemberProjects.push(newProject);
+        }
+    }
+
+    private set setSpectatorProjects(projects: any){
+        this.spectatorProjects = [];
+        for(let project of projects){
+            let newProject = new Project();
+            newProject.setProjectFromApi(project);
+            this.spectatorProjects.push(newProject);
+        }
+    }
+
+    public setUserFromApi(apiResponse: any) {
         this.setId = apiResponse.id;
         this.setEmail = apiResponse.email;
         this.setName = apiResponse.name;
-        this.setAuthorProjects = authorProjects;
-        this.setAdminProjects = adminProjects;
-        this.setTeamMemberProjects = teamMemberProjects;
-        this.setSpectatorProjects = spectatorProjects;
+        this.setAuthorProjects = apiResponse.projects.author;
+        this.setAdminProjects = apiResponse.projects.admin;
+        this.setTeamMemberProjects = apiResponse.projects.team_member;
+        this.setSpectatorProjects = apiResponse.projects.spectator;
     }
 
     public setUserFromProject(projectResponse: any) {

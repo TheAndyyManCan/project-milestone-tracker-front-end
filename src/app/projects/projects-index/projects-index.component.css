@@ -54,6 +54,7 @@
 
 .project-link:hover {
     background-color: var(--dark-300);
+    color: white;
     cursor: pointer;
 }
 

@@ -1,9 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from './user.class';
-import { Project } from './projects/project.class';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +12,7 @@ export class AuthService implements OnInit {
     authenticated$ = new BehaviorSubject<boolean>(false);
     user = new User();
     user$ = new BehaviorSubject<User>(this.user);
+    registrationError$ = new Subject<boolean>;
 
     ax = axios.create({
         baseURL: 'http://localhost:8000',
@@ -45,36 +45,8 @@ export class AuthService implements OnInit {
                 email: email,
                 password: password
             }).then(response => {
-                let authorProjects = [];
-                for(let project of response.data.data.projects.author){
-                    let newProject = new Project();
-                    newProject.setProjectFromApi(project);
-                    authorProjects.push(newProject);
-                }
-
-                let adminProjects = [];
-                for(let project of response.data.data.projects.admin){
-                    let newProject = new Project();
-                    newProject.setProjectFromApi(project);
-                    adminProjects.push(newProject);
-                }
-
-                let teamMemberProjects = [];
-                for(let project of response.data.data.projects.team_member){
-                    let newProject = new Project();
-                    newProject.setProjectFromApi(project);
-                    teamMemberProjects.push(newProject);
-                }
-
-                let spectatorProjects = [];
-                for(let project of response.data.data.projects.spectator){
-                    let newProject = new Project();
-                    newProject.setProjectFromApi(project);
-                    spectatorProjects.push(newProject);
-                }
-
                 this.user = new User();
-                this.user.setUserFromApi(response.data.data, authorProjects, adminProjects, teamMemberProjects, spectatorProjects);
+                this.user.setUserFromApi(response.data.data);
                 this.authenticated$.next(true);
                 this.router.navigateByUrl("/projects");
             }).catch(err => {
@@ -102,41 +74,22 @@ export class AuthService implements OnInit {
             email: email,
             password: password,
             password_confirmation: confirmPassword
+        }).then(response => {
+            this.user = new User();
+            this.user.setUserFromApi(response.data.data);
+            this.user$.next(this.user);
+            this.authenticated$.next(true);
+            this.registrationError$.next(false);
+            this.router.navigateByUrl("/");
+        }).catch(() => {
+            this.registrationError$.next(true);
         });
     }
 
     checkUser() {
         this.ax.get('api/user').then(response => {
-            let authorProjects = [];
-            for(let project of response.data.data.projects.author){
-                let newProject = new Project();
-                newProject.setProjectFromApi(project);
-                authorProjects.push(newProject);
-            }
-
-            let adminProjects = [];
-            for(let project of response.data.data.projects.admin){
-                let newProject = new Project();
-                newProject.setProjectFromApi(project);
-                adminProjects.push(newProject);
-            }
-
-            let teamMemberProjects = [];
-            for(let project of response.data.data.projects.team_member){
-                let newProject = new Project();
-                newProject.setProjectFromApi(project);
-                teamMemberProjects.push(newProject);
-            }
-
-            let spectatorProjects = [];
-            for(let project of response.data.data.projects.spectator){
-                let newProject = new Project();
-                newProject.setProjectFromApi(project);
-                spectatorProjects.push(newProject);
-            }
-
             this.user = new User();
-            this.user.setUserFromApi(response.data.data, authorProjects, adminProjects, teamMemberProjects, spectatorProjects);
+            this.user.setUserFromApi(response.data.data);
             this.user$.next(this.user);
             this.authenticated$.next(true);
         }).catch(() => {
