@@ -1,0 +1,52 @@
+.top-row-container {
+    margin: 0 auto 0 auto;
+    width: 33%;
+    margin-bottom: 0.5rem;
+}
+
+.bottom-row-container {
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+}
+
+.description-container {
+    width: 50%;
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.deadline-container {
+    width: 50%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+#title-input {
+    background-color: var(--dark-300);
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.75rem;
+}
+
+#deadline-input {
+    height: 3.5rem;
+}
+
+.controls-container {
+    display: flex;
+    align-items: flex-end;
+    align-self: center;
+    margin-top: 0.5rem;
+}
+
+.control-button {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.control-button:hover {
+    color: var(--dark-600);
+}

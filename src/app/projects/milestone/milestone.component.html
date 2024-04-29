@@ -9,7 +9,7 @@
             "{ 'current-status-button': milestone.getStatus == button.status,
             'completed-selected-button': milestone.getStatus == button.status && milestone.getStatus == 'complete',
             'abandoned-selected-button': milestone.getStatus == button.status && milestone.getStatus == 'abandoned',
-            'hover:cursor-not-allowed': authPermissionLevel < 2}"
+            'not-allowed': authPermissionLevel < 2}"
             (click)="changeMilestoneStatus(button.status)"
             *ngFor="let button of statusButtons">{{ button.name }}</button>
     </div>

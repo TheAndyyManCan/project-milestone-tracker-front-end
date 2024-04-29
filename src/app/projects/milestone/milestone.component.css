@@ -8,10 +8,7 @@
 }
 
 .edit-mode {
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-    border-bottom-right-radius: 0rem;
-    border-bottom-left-radius: 0rem;
+    border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .milestone-title {
@@ -23,6 +20,9 @@
     background-color: var(--dark-600);
 }
 
+.not-allowed:hover {
+    cursor: not-allowed;
+}
 
 /**
  * Info
@@ -117,7 +117,7 @@
      background-color: var(--dark-200);
      border-radius: 0.5rem;
      color: var(--dark-600);
-     width: 100%;
+     width: 98.25%;
      margin-left: auto;
      margin-right: auto;
      padding: 0.5rem;
