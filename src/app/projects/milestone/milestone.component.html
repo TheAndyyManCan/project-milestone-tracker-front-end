@@ -38,20 +38,19 @@
     </div>
     <div class="comments-container">
         <div class="comments-heading">Comments</div>
-        <div class="comment-container">
-            <div class="comment-icon">
-                AM
-            </div>
-            <div class="comment">
-                <div class="comment-name">Andy McDonald</div>
-                This is what a comment will look like
-            </div>
-        </div>
-        <form>
+        <app-milestone-comment
+            *ngFor="let comment of milestone.getComments"
+            [comment]="comment"
+            [authPermissionLevel]="authPermissionLevel"
+            (deleteEvent)="onDeleteComment($event)"
+            (editEvent)="onEditComment($event)"></app-milestone-comment>
+        <form [formGroup]="commentForm" (ngSubmit)="onAddComment()" *ngIf="authPermissionLevel >= 2">
             <textarea
                     name="comment"
                     class="comment-textarea"
-                    placeholder="Write a comment..."></textarea>
+                    placeholder="Write a comment..."
+                    formControlName="content"></textarea>
+            <button type="submit" class="submit-button" [disabled]="commentForm.invalid">Add Comment</button>
         </form>
     </div>
 </div>

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Milestone } from './projects/milestone.class';
 import axios from 'axios';
-import { AuthService } from './auth.service';
-import { Project } from './projects/project.class';
 import { ProjectService } from './projects/project.service';
 
 @Injectable({
@@ -27,6 +25,12 @@ export class MilestoneService {
 
     constructor(private projectService: ProjectService) { }
 
+    changeMilestone(responseData: any){
+        let milestone = new Milestone();
+        milestone.setMilestoneFromApi(responseData);
+        this.milestoneChange$.next(milestone);
+    }
+
     createMilestone(userId:number, projectId:number, name:string, description:string, status:string, deadline:string){
         this.ax.post('api/v1/milestones', {
             user_id: userId,
@@ -46,9 +50,7 @@ export class MilestoneService {
         this.ax.patch('api/v1/milestones/' + id + '/status', {
             status: status
         }).then(response => {
-            let newMilestone = new Milestone();
-            newMilestone.setMilestoneFromApi(response.data.data);
-            this.milestoneChange$.next(newMilestone);
+            this.changeMilestone(response.data.data);
         }).catch(err => {
             console.log(err);
         });
@@ -63,9 +65,7 @@ export class MilestoneService {
             status: status,
             deadline: deadline
         }).then(response => {
-            let newMilestone = new Milestone();
-            newMilestone.setMilestoneFromApi(response.data.data);
-            this.milestoneChange$.next(newMilestone);
+            this.changeMilestone(response.data.data);
         }).catch(err => {
             console.log(err);
         });
@@ -74,6 +74,36 @@ export class MilestoneService {
     deleteMilestone(id: number, projectId: number){
         this.ax.delete('api/v1/milestones/' + id).then(() => {
             this.newMilestone$.next(this.projectService.returnProjectById(projectId));
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    addComment(authorId: number, milestoneId: number, content: string){
+        this.ax.post('api/v1/milestonecomments', {
+            user_id: authorId,
+            milestone_id: milestoneId,
+            content: content
+        }).then(response => {
+            this.changeMilestone(response.data.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    deleteComment(commentId: number){
+        this.ax.delete('api/v1/milestonecomments/' + commentId).then(response => {
+            this.changeMilestone(response.data.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    editComment(commentId: number, content: string){
+        this.ax.patch('api/v1/milestonecomments/' + commentId, {
+            content: content
+        }).then(response => {
+            this.changeMilestone(response.data.data);
         }).catch(err => {
             console.log(err);
         });

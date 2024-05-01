@@ -1,0 +1,30 @@
+<div class="comment-container">
+    <div class="comment-icon">
+        {{ initials }}
+    </div>
+    <div class="comment" *ngIf="!editMode">
+        <div class="comment-name">{{ comment.getAuthor.getName }}</div>
+        {{ comment.getContent }}
+    </div>
+    <div class="controls-container" *ngIf="!editMode">
+        <button (click)="toggleEditMode()" class="control-button" *ngIf="editPermission">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="control-button" (click)="deleteComment()" *ngIf="deletePermission">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+    <form *ngIf="editMode" class="edit-form" [formGroup]="editForm" (ngSubmit)="editComment()">
+        <div class="comment" *ngIf="editMode">
+            <input [value]="comment.getContent" class="form-input" type="text" formControlName="content" />
+        </div>
+        <div class="controls-container" *ngIf="editMode">
+            <button type="submit" class="control-button">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="button" (click)="toggleEditMode()" class="control-button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </form>
+</div>

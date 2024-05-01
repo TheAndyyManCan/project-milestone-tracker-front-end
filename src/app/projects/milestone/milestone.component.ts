@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Milestone } from '../milestone.class';
 import { MilestoneService } from 'src/app/milestone.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-milestone',
@@ -22,7 +24,11 @@ export class MilestoneComponent implements OnInit {
         {name: 'Abandoned', status: 'abandoned'}
     ];
 
-    constructor(private milestoneService: MilestoneService) {}
+    public commentForm = new FormGroup({
+        content: new FormControl("", Validators.required)
+    });
+
+    constructor(private milestoneService: MilestoneService, private auth: AuthService) {}
 
     changeMilestoneStatus(status: string){
         if(this.authPermissionLevel >= 2){
@@ -50,5 +56,19 @@ export class MilestoneComponent implements OnInit {
                 this.date = new Date(milestone.getDeadline);
             }
         });
+    }
+
+    onAddComment() {
+        this.auth.checkUser();
+        this.milestoneService.addComment(this.auth.user.getId, this.milestone.getId, this.commentForm.controls.content.value!);
+        this.commentForm.reset();
+    }
+
+    onEditComment(commentData: any) {
+        this.milestoneService.editComment(commentData.id, commentData.content);
+    }
+
+    onDeleteComment(commentId: number) {
+        this.milestoneService.deleteComment(commentId);
     }
 }

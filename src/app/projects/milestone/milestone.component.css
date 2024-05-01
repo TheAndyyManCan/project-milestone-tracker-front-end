@@ -78,40 +78,6 @@
     font-weight: 600;
 }
 
-.comment-container {
-    background-color: var(--dark-300);
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    display: flex;
-}
-
-.comment-icon {
-    border-radius: 9999px;
-    background-color: var(--dark-200);
-    height: 2.5rem;
-    width: 2.5rem;
-    margin-top: 0.5rem;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    color: var(--dark-600);
-}
- .comment {
-     padding: 0.5rem;
- }
-
- .comment-name {
-     font-weight: 600;
-     color: var(--dark-600);
- }
-
- .comment-name::selection {
-     background-color: var(--dark-200);
- }
-
  .comment-textarea {
      font-weight: 600;
      background-color: var(--dark-200);
@@ -134,4 +100,8 @@
  .comment-textarea::placeholder {
      font-style: italic;
      font-weight: 100;
+ }
+
+ .submit-button {
+     margin-left: 0;
  }

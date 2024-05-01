@@ -23,6 +23,7 @@ import { UserSearchComponent } from './projects/user-search/user-search.componen
 import { UserPermissionComponent } from './projects/user-permission/user-permission.component';
 import { UserPermissionColumnComponent } from './projects/user-permission-column/user-permission-column.component';
 import { EditUserPermissionComponent } from './projects/edit-user-permission/edit-user-permission.component';
+import { MilestoneCommentComponent } from './projects/milestone-comment/milestone-comment.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EditUserPermissionComponent } from './projects/edit-user-permission/edi
     UserSearchComponent,
     UserPermissionComponent,
     UserPermissionColumnComponent,
-    EditUserPermissionComponent
+    EditUserPermissionComponent,
+    MilestoneCommentComponent
   ],
   imports: [
     BrowserModule,

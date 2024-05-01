@@ -1,0 +1,58 @@
+.comment-container {
+    background-color: var(--dark-300);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+}
+
+.comment-icon {
+    border-radius: 9999px;
+    background-color: var(--dark-200);
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: var(--dark-600);
+}
+ .comment {
+     padding: 0.5rem;
+     flex-grow: 1;
+ }
+
+ .comment-name {
+     font-weight: 600;
+     color: var(--dark-600);
+ }
+
+ .comment-name::selection {
+     background-color: var(--dark-200);
+ }
+
+.controls-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.control-button {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.control-button:hover {
+    color:var(--dark-600);
+}
+
+.edit-mode {
+    padding: 0.5rem;
+    flex-grow: 1;
+}
+
+.edit-form {
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
+}
