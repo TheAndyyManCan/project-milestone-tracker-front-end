@@ -12,6 +12,7 @@ export class Milestone {
     private timeLeft!: string;
     private author!: number;
     private comments!: MilestoneComment[];
+    private allocatedUsers!: User[];
 
     constructor() {
         this.setId = -1;
@@ -23,6 +24,7 @@ export class Milestone {
         this.setTimeLeft = '';
         this.setAuthor = -1;
         this.setComments = [];
+        this.setAllocatedUsers = [];
     }
 
     // Getters and setters
@@ -35,6 +37,7 @@ export class Milestone {
     public get getTimeLeft():string {return this.timeLeft;}
     public get getAuthor():number {return this.author;}
     public get getComments():MilestoneComment[] {return this.comments;}
+    public get getAllocatedUsers():User[] {return this.allocatedUsers;}
 
     private set setId(id: number) {this.id = id;}
     private set setProjectId(projectId: number) {this.projectId = projectId;}
@@ -45,12 +48,21 @@ export class Milestone {
     private set setTimeLeft(timeLeft: string) {this.timeLeft = timeLeft;}
     private set setAuthor(author: number) {this.author = author;}
 
-    private set setComments(comments: MilestoneComment[]) {
+    private set setComments(comments: any[]) {
         this.comments = [];
         for(let comment of comments){
             let newComment = new MilestoneComment();
             newComment.setMilestoneCommentFromApi(comment);
             this.comments.push(newComment);
+        }
+    }
+
+    private set setAllocatedUsers(users: any[]) {
+        this.allocatedUsers = [];
+        for(let user of users){
+            let newUser = new User();
+            newUser.setUserFromProject(user);
+            this.allocatedUsers.push(newUser);
         }
     }
 
@@ -64,5 +76,6 @@ export class Milestone {
         this.setTimeLeft = apiResource.time_left;
         this.setAuthor = apiResource.author;
         this.setComments = apiResource.comments;
+        this.setAllocatedUsers = apiResource.allocations;
     }
 }

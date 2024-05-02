@@ -40,7 +40,6 @@ export class MilestoneCommentComponent implements OnInit {
     }
 
     ngOnInit(){
-
         this.editPermission = this.auth.user.getId == this.comment.getAuthor.getId;
         this.deletePermission = this.auth.user.getId == this.comment.getAuthor.getId || this.authPermissionLevel >= 3;
 
